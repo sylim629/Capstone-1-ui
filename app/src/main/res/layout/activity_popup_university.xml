@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/accent"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="대학교 찾기"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_layout"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/uni_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:hint="예) 중앙, 중앙대, 중앙대학교"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/button_search_uni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/uni_name"
+            android:clickable="true"
+            android:text="찾기" />
+
+        <Button
+            android:id="@+id/button_save_uni"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:text="확인"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/button_cancel_uni"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:text="취소"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</RelativeLayout>
