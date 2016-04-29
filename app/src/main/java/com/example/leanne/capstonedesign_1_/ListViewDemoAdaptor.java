@@ -56,7 +56,8 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.wish_duty.setText(item.wish_duty);
         viewHolder.certificates.setText(item.certificates);
         viewHolder.toeicScore.setText(item.toeicScore);
-        if(viewHolder.stateFav == false) {       // if heart is white
+
+        if(viewHolder.stateFav == false) {       // 흰 하트일 때 클릭
             viewHolder.addToFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -67,7 +68,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             });
             viewHolder.stateFav = true;
         }
-        else {                                         // if heart is red
+        else {                                         // 하트가 빨강일 때 클릭
             viewHolder.remFromFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

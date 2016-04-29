@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
  * Created by Chloe on 4/13/2016.
  */
 public class ListViewItem {
-
     public final String id;
     public final String major;
     public final String wish_duty;
@@ -21,9 +20,5 @@ public class ListViewItem {
         this.certificates = certificates;
         this.toeicScore = toeicScore;
         this.isFav = isFav;
-    }
-
-    public void setFavState(boolean state) {
-        isFav = state;
     }
 }
