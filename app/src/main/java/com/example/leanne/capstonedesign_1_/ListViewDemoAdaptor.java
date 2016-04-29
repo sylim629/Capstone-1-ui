@@ -1,12 +1,17 @@
 package com.example.leanne.capstonedesign_1_;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -21,7 +26,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+        final ViewHolder viewHolder;
 
         if(convertView == null) {
             // inflate the GridView item layout
@@ -35,6 +40,8 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.wish_duty = (TextView) convertView.findViewById(R.id.rankings_wish_duty);
             viewHolder.certificates = (TextView) convertView.findViewById(R.id.rankings_certificates);
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
+            viewHolder.addToFav = (ImageButton) convertView.findViewById(R.id.heart_white);
+            viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
 
             convertView.setTag(viewHolder);
         } else {
@@ -49,6 +56,28 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.wish_duty.setText(item.wish_duty);
         viewHolder.certificates.setText(item.certificates);
         viewHolder.toeicScore.setText(item.toeicScore);
+        if(viewHolder.stateFav == false) {       // if heart is white
+            viewHolder.addToFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.addToFav.setVisibility(View.GONE);
+                    viewHolder.remFromFav.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "clicked white heart!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            viewHolder.stateFav = true;
+        }
+        else {                                         // if heart is red
+            viewHolder.remFromFav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.remFromFav.setVisibility(View.GONE);
+                    viewHolder.addToFav.setVisibility(View.VISIBLE);
+                    Toast.makeText(getContext(), "clicked red heart!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            viewHolder.stateFav = false;
+        }
 
         return convertView;
     }
@@ -61,5 +90,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
      */
     private static class ViewHolder {
         TextView id, major, wish_duty, certificates, toeicScore;
+        ImageButton addToFav, remFromFav;
+        boolean stateFav = false;   // 초기값은 일단 false(white heart)로
     }
 }

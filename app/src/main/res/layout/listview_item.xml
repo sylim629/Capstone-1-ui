@@ -38,6 +38,23 @@
                 android:textColor="@android:color/white"
                 android:text="전공: "/>
 
+            <ImageButton
+                android:id="@+id/heart_white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/heart_white"/>
+
+            <ImageButton
+                android:id="@+id/heart_red"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/heart_red"
+                android:visibility="gone"/>
+
             <!-- the description view -->
             <TextView
                 android:id="@+id/rankings_major"
@@ -95,19 +112,6 @@
                 android:textColor="@android:color/white"
                 android:textAppearance="@android:style/TextAppearance.Small"
                 android:text="toeic score"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true">
-            <ImageButton
-                android:layout_margin="10dp"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/heart_white"/>
-
         </RelativeLayout>
 
     </RelativeLayout>

@@ -12,14 +12,18 @@ public class ListViewItem {
     public final String wish_duty;
     public final String certificates;
     public final String toeicScore;
+    public boolean isFav = false;
 
-    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore) {
+    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav) {
         this.id = id;
         this.major = major;
         this.wish_duty = wish_duty;
         this.certificates = certificates;
         this.toeicScore = toeicScore;
+        this.isFav = isFav;
     }
 
-
+    public void setFavState(boolean state) {
+        isFav = state;
+    }
 }

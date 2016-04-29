@@ -29,11 +29,11 @@ public class TabFragment_Ranking extends ListFragment {
         Resources resources = getResources();
 
         // 일단은 컴공 밖에 선택 못 하니까
-        mItems.add(new ListViewItem("id_1", "컴퓨터공학부", "시스템프로그래머", "자격증..?", "900"));
-        mItems.add(new ListViewItem("id_2", "컴퓨터공학부", "웹프로그래머", "자격증..?", "900"));
-        mItems.add(new ListViewItem("id_3", "컴퓨터공학무", "응용프로그래머", "자격증..?", "900"));
-        mItems.add(new ListViewItem("id_4", "컴퓨터공학부", "하드웨어/소프트웨어", "자격증..?", "900"));
-        mItems.add(new ListViewItem("id_5", "컴퓨터공학부", "데이터베이스DBA", "자격증..?", "900"));
+        mItems.add(new ListViewItem("id_1", "컴퓨터공학부", "시스템프로그래머", "자격증..?", "900", false));
+        mItems.add(new ListViewItem("id_2", "컴퓨터공학부", "웹프로그래머", "자격증..?", "900", false));
+        mItems.add(new ListViewItem("id_3", "컴퓨터공학무", "응용프로그래머", "자격증..?", "900", false));
+        mItems.add(new ListViewItem("id_4", "컴퓨터공학부", "하드웨어/소프트웨어", "자격증..?", "900", false));
+        mItems.add(new ListViewItem("id_5", "컴퓨터공학부", "데이터베이스DBA", "자격증..?", "900", false));
 
         // initialize and set the list adapter
         setListAdapter(new ListViewDemoAdaptor(getActivity(), mItems));
