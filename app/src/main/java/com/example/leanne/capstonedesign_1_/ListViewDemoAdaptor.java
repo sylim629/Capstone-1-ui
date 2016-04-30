@@ -35,6 +35,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
             // initialize the view holder
             viewHolder = new ViewHolder();
+            viewHolder.ranking = (TextView) convertView.findViewById(R.id.ranking_num);
             viewHolder.id = (TextView) convertView.findViewById(R.id.rankings_id);
             viewHolder.major = (TextView) convertView.findViewById(R.id.rankings_major);
             viewHolder.wish_duty = (TextView) convertView.findViewById(R.id.rankings_wish_duty);
@@ -51,6 +52,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
         // update the item view
         ListViewItem item = getItem(position);
+        viewHolder.ranking.setText(""+item.ranking);
         viewHolder.id.setText(item.id);
         viewHolder.major.setText(item.major);
         viewHolder.wish_duty.setText(item.wish_duty);
@@ -90,7 +92,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
      * @see http://developer.android.com/training/improving-layouts/smooth-scrolling.html#ViewHolder
      */
     private static class ViewHolder {
-        TextView id, major, wish_duty, certificates, toeicScore;
+        TextView ranking, id, major, wish_duty, certificates, toeicScore;
         ImageButton addToFav, remFromFav;
         boolean stateFav = false;   // 초기값은 일단 false(white heart)로
     }

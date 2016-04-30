@@ -24,9 +24,19 @@
 
             <!-- the title view -->
             <TextView
+                android:id="@+id/ranking_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textAppearance="@android:style/TextAppearance.Medium"
+                android:text="#"/>
+
+            <TextView
                 android:id="@+id/rankings_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/ranking_num"
+                android:layout_marginLeft="10dp"
                 android:textColor="@android:color/white"
                 android:textAppearance="@android:style/TextAppearance.Medium"
                 android:text="id"/>
