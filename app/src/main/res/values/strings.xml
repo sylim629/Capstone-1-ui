@@ -25,4 +25,5 @@
     <string name="cancel">취소</string>
     <string name="find_university">대학교 찾기</string>
     <string name="ok">확인</string>
+    <string name="add_certs">자격증 추가</string>
 </resources>

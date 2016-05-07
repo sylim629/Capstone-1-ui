@@ -18,7 +18,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +45,7 @@ public class EditMyInfoActivity extends AppCompatActivity
     static String selectedUni;
     private PopupWindow popupWindowCert;
     TextView textViewAddCert;
+    static String selectedCert;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -134,25 +134,25 @@ public class EditMyInfoActivity extends AppCompatActivity
                 popupWindowUni.setFocusable(true);
                 popupWindowUni.update();
 
-                EditText editTextSearch = (EditText) layoutUni.findViewById(R.id.uni_name);
-                String inputString = editTextSearch.getText().toString();
-                ArrayList<String> arrayListResults = new ArrayList<>();
-                Button buttonSearch = (Button) layoutUni.findViewById(R.id.button_search_uni);
-                buttonSearch.setOnClickListener(new View.OnClickListener() {
+                EditText editTextSearchUni = (EditText) layoutUni.findViewById(R.id.uni_name);
+                String inputUni = editTextSearchUni.getText().toString();
+                ArrayList<String> arrayListUni = new ArrayList<>();
+                Button buttonSearchUni = (Button) layoutUni.findViewById(R.id.button_search_uni);
+                buttonSearchUni.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // inputString 값을 대학디비에서 찾는다
-                        // 찾은 결과들은 arrayListResults에 저장
+                        // inputUni 값을 대학디비에서 찾는다
+                        // 찾은 결과들은 arrayListUni에 저장
                     }
                 });
                 // 일단 테스트를 위해 중앙대학교로 지정
-                arrayListResults.add("중앙대학교");
-                final ListView listView = (ListView) layoutUni.findViewById(R.id.list);
-                final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                arrayListUni.add("중앙대학교");
+                final ListView listView = (ListView) layoutUni.findViewById(R.id.list_uni);
+                final ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this,
                         android.R.layout.simple_list_item_single_choice);
-                listView.setAdapter(adapter);
-                for (int i = 0; i < arrayListResults.size(); i++) {
-                    adapter.add(arrayListResults.get(i));
+                listView.setAdapter(adapterUni);
+                for (int i = 0; i < arrayListUni.size(); i++) {
+                    adapterUni.add(arrayListUni.get(i));
                 }
                 listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -216,11 +216,48 @@ public class EditMyInfoActivity extends AppCompatActivity
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layoutCert = inflaterCert.inflate(R.layout.activity_popup_certificate,
                         (ViewGroup) findViewById(R.id.popup_element));
-                popupWindowCert = new PopupWindow(layoutCert, RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
+                popupWindowCert = new PopupWindow(layoutCert, screenWidth / 4 * 3, screenHeight / 4 * 3);
                 popupWindowCert.showAtLocation(layoutCert, Gravity.CENTER, 0, 0);
                 popupWindowCert.setFocusable(true);
                 popupWindowCert.update();
+
+                EditText editTextSearchCert = (EditText) layoutCert.findViewById(R.id.cert_name);
+                String inputCert = editTextSearchCert.getText().toString();
+                ArrayList<String> arrayListCerts = new ArrayList<>();
+                Button buttonSearchCert = (Button) layoutCert.findViewById(R.id.button_search_cert);
+                buttonSearchCert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // inputCert 값을 자격증디비에서 찾는다
+                        // 찾은 결과들은 arrayListCerts에 저장
+                    }
+                });
+                // 일단 테스트를 위해 정보처리기사로 지정
+                arrayListCerts.add("정보처리기사");
+                final ListView listCerts = (ListView) layoutCert.findViewById(R.id.list_cert);
+                final ArrayAdapter<String> adapterCert = new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_single_choice);
+                listCerts.setAdapter(adapterCert);
+                for (int i = 0; i < arrayListCerts.size(); i++) {
+                    adapterCert.add(arrayListCerts.get(i));
+                }
+                listCerts.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+                listCerts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        selectedCert= parent.getItemAtPosition(position).toString();
+                        Log.d("TAG", selectedCert);
+                    }
+                });
+                Button buttonSaveCert = (Button) layoutCert.findViewById(R.id.button_save_cert);
+                buttonSaveCert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textViewAddCert.setText(selectedCert);
+                        popupWindowCert.dismiss();
+                    }
+                });
 
                 Button buttonCloseCertPopup = (Button) layoutCert.findViewById(R.id.button_cancel_cert);
                 buttonCloseCertPopup.setOnClickListener(new View.OnClickListener() {
