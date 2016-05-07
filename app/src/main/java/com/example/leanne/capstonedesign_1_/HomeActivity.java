@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
 /**
  * Created by imsuyeon on 16. 4. 2..
+ * 탭 화면들 기본 홈 화면
  */
 public class HomeActivity extends AppCompatActivity {
 
