@@ -97,7 +97,7 @@
             android:prompt="@string/choose" />
 
         <TextView
-            android:id="@+id/wishduty_extra"
+            android:id="@+id/text_duty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -121,24 +121,24 @@
             android:prompt="@string/choose" />
 
         <TextView
-            android:id="@+id/wishcomp_extra"
+            android:id="@+id/text_company"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/wishduty_extra"
+            android:layout_below="@id/text_duty"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/wishcomp_extra_input"
+            android:layout_toLeftOf="@+id/input_company"
             android:text="희망회사"
             android:textColor="@android:color/white"
             android:textSize="20dp" />
 
         <EditText
-            android:id="@+id/wishcomp_extra_input"
+            android:id="@+id/input_company"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/wishduty_extra"
+            android:layout_below="@id/text_duty"
             android:layout_marginBottom="10dp"
             android:background="@android:color/white"
             android:clickable="true"
@@ -152,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/wishcomp_extra"
+            android:layout_below="@id/text_company"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/layout_gender"
@@ -165,7 +165,7 @@
             android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/wishcomp_extra"
+            android:layout_below="@id/text_company"
             android:orientation="horizontal"
             android:paddingBottom="10dp">
 

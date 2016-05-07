@@ -16,14 +16,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
@@ -73,7 +70,7 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
         textViewAddCertif = (TextView) findViewById(R.id.certif_input);
         textViewAddCertif.setOnClickListener(this);
         editTextToeic = (EditText) findViewById(R.id.editText_toeic);
-        editTextCompName = (EditText) findViewById(R.id.wishcomp_extra_input);
+        editTextCompName = (EditText) findViewById(R.id.input_company);
 
         spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
         ArrayAdapter adapterMajor = ArrayAdapter.createFromResource(this, R.array.majors,
