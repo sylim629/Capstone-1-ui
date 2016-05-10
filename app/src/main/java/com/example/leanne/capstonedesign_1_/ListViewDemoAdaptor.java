@@ -72,11 +72,11 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     Log.d("isFav", "false");
                 Log.d("id check", item.getId());
                 if(viewHolder.getIsFav() == false) {  // 흰 하트일 때
-                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));
+                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 무시..
                     viewHolder.isFav = true;
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 } else {
-                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));
+                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 무시..
                     viewHolder.isFav = false;
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
