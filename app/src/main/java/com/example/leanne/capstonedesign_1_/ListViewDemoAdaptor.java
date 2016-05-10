@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.Image;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +46,8 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.wish_duty = (TextView) convertView.findViewById(R.id.rankings_wish_duty);
             viewHolder.certificates = (TextView) convertView.findViewById(R.id.rankings_certificates);
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
-            viewHolder.addToFav = (ImageButton) convertView.findViewById(R.id.heart_white);
-            viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
+            viewHolder.fav = (ImageButton) convertView.findViewById(R.id.heart_white);
+           // viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
 
             convertView.setTag(viewHolder);
         } else {
@@ -62,38 +63,25 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.wish_duty.setText(item.wish_duty);
         viewHolder.certificates.setText(item.certificates);
         viewHolder.toeicScore.setText(item.toeicScore);
-        if(viewHolder.isFav == false) {       // 흰 하트이면
-            viewHolder.addToFav.setVisibility(View.VISIBLE);
-            viewHolder.remFromFav.setVisibility(View.GONE);
-            viewHolder.addToFav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("id check", item.getId());
-                    //System.out.println("clicked id: " + viewHolder.id.toString());  // check for id
-                    //loggedInUser.addFav_id(viewHolder.id.toString());
-                    viewHolder.addToFav.setVisibility(View.GONE);
-                    viewHolder.remFromFav.setVisibility(View.VISIBLE);
+        viewHolder.fav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(viewHolder.getIsFav() == true)
+                    Log.d("isFav", "true");
+                else
+                    Log.d("isFav", "false");
+                Log.d("id check", item.getId());
+                if(viewHolder.getIsFav() == false) {  // 흰 하트일 때
+                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));
+                    viewHolder.isFav = true;
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
-                }
-            });
-            viewHolder.isFav = true;
-        }
-        else {                                  // 빨강 하트이면
-            viewHolder.addToFav.setVisibility(View.GONE);
-            viewHolder.remFromFav.setVisibility(View.VISIBLE);
-            viewHolder.remFromFav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d("id check", item.getId());
-                    //System.out.println("clicked id: " + viewHolder.id.toString());  // check for id
-                    //loggedInUser.deleteFav_id(viewHolder.id.toString());
-                    viewHolder.remFromFav.setVisibility(View.GONE);
-                    viewHolder.addToFav.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));
+                    viewHolder.isFav = false;
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
-            });
-            viewHolder.isFav = false;
-        }
+            }
+        });
 
         return convertView;
     }
@@ -106,7 +94,12 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
      */
     private static class ViewHolder {
         TextView ranking, id, major, wish_duty, certificates, toeicScore;
-        ImageButton addToFav, remFromFav;
+        ImageButton fav;
         boolean isFav;   // 초기값은 일단 false(white heart)로
+
+        public boolean getIsFav() {
+            return isFav;
+        }
+
     }
 }

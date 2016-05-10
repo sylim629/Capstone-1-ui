@@ -56,15 +56,6 @@
                 android:layout_height="25dp"
                 android:background="@drawable/heart_white"/>
 
-            <ImageButton
-                android:id="@+id/heart_red"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:background="@drawable/heart_red"
-                android:visibility="gone"/>
-
             <!-- the description view -->
             <TextView
                 android:id="@+id/rankings_major"
