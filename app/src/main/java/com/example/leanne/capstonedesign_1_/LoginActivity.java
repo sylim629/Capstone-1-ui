@@ -1,12 +1,9 @@
 package com.example.leanne.capstonedesign_1_;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,12 +11,11 @@ import android.widget.Toast;
 
 /**
  * Created by imsuyeon on 16. 4. 2..
+ * 로그인 페이지
  */
 public class LoginActivity extends Activity implements View.OnClickListener {
 
     private BackPressCloseHandler backPressCloseHandler;
-    private Button buttonLogin;
-    private TextView textViewRegister, textViewFindPW;
     private EditText editTextID, editTextPW;
 
     @Override
@@ -32,9 +28,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
     private void initView() {
         backPressCloseHandler = new BackPressCloseHandler(this);
-        buttonLogin = (Button)findViewById(R.id.button_login);
-        textViewRegister = (TextView)findViewById(R.id.textView_register);
-        textViewFindPW = (TextView)findViewById(R.id.textView_find_pw);
+        Button buttonLogin = (Button) findViewById(R.id.button_login);
+        TextView textViewRegister = (TextView) findViewById(R.id.textView_register);
+        TextView textViewFindPW = (TextView) findViewById(R.id.textView_find_pw);
         editTextID = (EditText)findViewById(R.id.editText_id);
         editTextPW = (EditText)findViewById(R.id.editText_pw);
         buttonLogin.setOnClickListener(this);

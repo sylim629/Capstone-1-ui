@@ -1,61 +1,66 @@
 package com.example.leanne.capstonedesign_1_;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
  * Created by imsuyeon on 16. 4. 4..
+ * 회원가입 후 뜨는 추가정보 입력 화면. 일생에 한번밖에 안뜨는 화면.ㅋ
  */
-public class ExtraInfoActivity extends Activity implements View.OnClickListener {
+public class ExtraInfoActivity extends AppCompatActivity
+        implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+    DisplayMetrics displaymetrics = new DisplayMetrics();
+    int screenWidth, screenHeight;
+    private Button buttonMale;
+    private Button buttonFemale;
     static boolean isFemaleClicked, isMaleClicked;
-    private Button buttonMale, buttonFemale, buttonCloseUniPopup, buttonCloseCertPopup;
 
     private int year, month, day;
     private TextView textViewBirthday;
-    static final int DATE_DIALOG_ID = 0;
 
-    private TextView textViewUniSearch;
     private PopupWindow popupWindowUni;
-    private TextView textViewAddCertif;
-    private PopupWindow popupWindowCertif;
+    TextView textViewUniSearch;
+    static String selectedUni;
+    private PopupWindow popupWindowCert;
+    TextView textViewAddCert;
+    static String selectedCert;
 
-    private Spinner spinnerMajor, spinnerCompType, spinnerCompDuty;
-
-    private EditText editTextToeic, editTextCompName;
-
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extra_info);
+
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenHeight = displaymetrics.heightPixels;
+        screenWidth = displaymetrics.widthPixels;
+
         initView();
     }
 
-    private void initView() {
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+    public void initView() {
         buttonMale = (Button) findViewById(R.id.button_male);
         buttonFemale = (Button) findViewById(R.id.button_female);
         isMaleClicked = false;
@@ -70,24 +75,22 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
         textViewBirthday.setOnClickListener(this);
         textViewUniSearch = (TextView) findViewById(R.id.uni_extra_input);
         textViewUniSearch.setOnClickListener(this);
-        textViewAddCertif = (TextView) findViewById(R.id.certif_input);
-        textViewAddCertif.setOnClickListener(this);
-        editTextToeic = (EditText) findViewById(R.id.editText_toeic);
-        editTextCompName = (EditText) findViewById(R.id.wishcomp_extra_input);
+        textViewAddCert = (TextView) findViewById(R.id.certif_input);
+        textViewAddCert.setOnClickListener(this);
 
-        spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
+        Spinner spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
         ArrayAdapter adapterMajor = ArrayAdapter.createFromResource(this, R.array.majors,
                 android.R.layout.simple_spinner_item);
         adapterMajor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMajor.setAdapter(adapterMajor);
 
-        spinnerCompType = (Spinner) findViewById(R.id.spinner_company_type);
+        Spinner spinnerCompType = (Spinner) findViewById(R.id.spinner_company_type);
         ArrayAdapter adapterCompType = ArrayAdapter.createFromResource(this, R.array.company_types,
                 android.R.layout.simple_spinner_item);
         adapterCompType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCompType.setAdapter(adapterCompType);
 
-        spinnerCompDuty = (Spinner) findViewById(R.id.spinner_company_duty);
+        Spinner spinnerCompDuty = (Spinner) findViewById(R.id.spinner_company_duty);
         ArrayAdapter adapterCompDuty = ArrayAdapter.createFromResource(this, R.array.company_duties,
                 android.R.layout.simple_spinner_item);
         adapterCompDuty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -96,28 +99,24 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
         updateDisplay();
     }
 
+    // attach to an onclick handler to show the date picker
+    public void showDatePickerDialog() {
+        DatePickerFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    // handle the date selected
+    @Override
+    public void onDateSet(DatePicker view, int setYear, int setMonth, int setDay) {
+        year = setYear;
+        month = setMonth;
+        day = setDay;
+        updateDisplay();
+    }
+
     private void updateDisplay() {
         this.textViewBirthday.setText(
                 new StringBuilder().append(year).append(".").append(month + 1).append(".").append(day));
-    }
-
-    private DatePickerDialog.OnDateSetListener mDateSetListener =
-            new DatePickerDialog.OnDateSetListener() {
-                public void onDateSet(DatePicker view, int setYear, int setMonth, int setDay) {
-                    year = setYear;
-                    month = setMonth;
-                    day = setDay;
-                    updateDisplay();
-                }
-            };
-
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        switch (id) {
-            case DATE_DIALOG_ID:
-                return new DatePickerDialog(this, mDateSetListener, year, month, day);
-        }
-        return null;
     }
 
     @Override
@@ -128,13 +127,49 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layoutUni = inflaterUni.inflate(R.layout.activity_popup_university,
                         (ViewGroup) findViewById(R.id.popup_element));
-                popupWindowUni = new PopupWindow(layoutUni, RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
+                popupWindowUni = new PopupWindow(layoutUni, screenWidth / 4 * 3, screenHeight / 4 * 3);
                 popupWindowUni.showAtLocation(layoutUni, Gravity.CENTER, 0, 0);
                 popupWindowUni.setFocusable(true);
                 popupWindowUni.update();
 
-                buttonCloseUniPopup = (Button) layoutUni.findViewById(R.id.button_cancel_uni);
+                EditText editTextSearchUni = (EditText) layoutUni.findViewById(R.id.uni_name);
+                String inputUni = editTextSearchUni.getText().toString();
+                ArrayList<String> arrayListUni = new ArrayList<>();
+                Button buttonSearchUni = (Button) layoutUni.findViewById(R.id.button_search_uni);
+                buttonSearchUni.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // inputUni 값을 대학디비에서 찾는다
+                        // 찾은 결과들은 arrayListUni에 저장
+                    }
+                });
+                // 일단 테스트를 위해 중앙대학교로 지정
+                arrayListUni.add("중앙대학교");
+                final ListView listView = (ListView) layoutUni.findViewById(R.id.list_uni);
+                final ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_single_choice);
+                listView.setAdapter(adapterUni);
+                for (int i = 0; i < arrayListUni.size(); i++) {
+                    adapterUni.add(arrayListUni.get(i));
+                }
+                listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        selectedUni = parent.getItemAtPosition(position).toString();
+                        Log.d("TAG", selectedUni);
+                    }
+                });
+                Button buttonSaveUni = (Button) layoutUni.findViewById(R.id.button_choose_uni);
+                buttonSaveUni.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textViewUniSearch.setText(selectedUni);
+                        popupWindowUni.dismiss();
+                    }
+                });
+                Button buttonCloseUniPopup = (Button) layoutUni.findViewById(R.id.button_cancel_uni);
                 buttonCloseUniPopup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -145,56 +180,88 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
             case R.id.button_male:
                 if (buttonMale.getBackground() == buttonFemale.getBackground()) {
                     buttonMale.setBackgroundResource(R.drawable.button_border_after);
-                    buttonMale.setTextColor(getResources().getColor(R.color.mint));
+                    buttonMale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
                     isMaleClicked = true;
                 } else if (buttonMale.getBackground() != buttonFemale.getBackground()) {
                     buttonMale.setBackgroundResource(R.drawable.button_border_after);
-                    buttonMale.setTextColor(getResources().getColor(R.color.mint));
+                    buttonMale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
                     isMaleClicked = true;
                     buttonFemale.setBackgroundResource(R.drawable.button_boarder_before);
-                    buttonFemale.setTextColor(getResources().getColor(R.color.light_gray));
+                    buttonFemale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
                     isFemaleClicked = false;
                 }
                 break;
             case R.id.button_female:
                 if (buttonMale.getBackground() == buttonFemale.getBackground()) {
                     buttonFemale.setBackgroundResource(R.drawable.button_border_after);
-                    buttonFemale.setTextColor(getResources().getColor(R.color.mint));
+                    buttonFemale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
                     isFemaleClicked = true;
                 } else if (buttonMale.getBackground() != buttonFemale.getBackground()) {
                     buttonFemale.setBackgroundResource(R.drawable.button_border_after);
-                    buttonFemale.setTextColor(getResources().getColor(R.color.mint));
+                    buttonFemale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
                     isFemaleClicked = true;
                     buttonMale.setBackgroundResource(R.drawable.button_boarder_before);
-                    buttonMale.setTextColor(getResources().getColor(R.color.light_gray));
+                    buttonMale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
                     isMaleClicked = false;
                 }
                 break;
             case R.id.text_birthday:
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        showDialog(DATE_DIALOG_ID);
-                    }
-                }, 100);
+//                showDialog(DATE_DIALOG_ID);
+                showDatePickerDialog();
                 break;
             case R.id.certif_input:
                 LayoutInflater inflaterCert = (LayoutInflater) ExtraInfoActivity.this
                         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layoutCert = inflaterCert.inflate(R.layout.activity_popup_certificate,
                         (ViewGroup) findViewById(R.id.popup_element));
-                popupWindowCertif = new PopupWindow(layoutCert, RelativeLayout.LayoutParams.MATCH_PARENT,
-                        RelativeLayout.LayoutParams.MATCH_PARENT);
-                popupWindowCertif.showAtLocation(layoutCert, Gravity.CENTER, 0, 0);
-                popupWindowCertif.setFocusable(true);
-                popupWindowCertif.update();
+                popupWindowCert = new PopupWindow(layoutCert, screenWidth / 4 * 3, screenHeight / 4 * 3);
+                popupWindowCert.showAtLocation(layoutCert, Gravity.CENTER, 0, 0);
+                popupWindowCert.setFocusable(true);
+                popupWindowCert.update();
 
-                buttonCloseCertPopup = (Button) layoutCert.findViewById(R.id.button_cancel_cert);
+                EditText editTextSearchCert = (EditText) layoutCert.findViewById(R.id.cert_name);
+                String inputCert = editTextSearchCert.getText().toString();
+                ArrayList<String> arrayListCerts = new ArrayList<>();
+                Button buttonSearchCert = (Button) layoutCert.findViewById(R.id.button_search_cert);
+                buttonSearchCert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // inputCert 값을 자격증디비에서 찾는다
+                        // 찾은 결과들은 arrayListCerts에 저장
+                    }
+                });
+                // 일단 테스트를 위해 정보처리기사로 지정
+                arrayListCerts.add("정보처리기사");
+                final ListView listCerts = (ListView) layoutCert.findViewById(R.id.list_cert);
+                final ArrayAdapter<String> adapterCert = new ArrayAdapter<>(this,
+                        android.R.layout.simple_list_item_single_choice);
+                listCerts.setAdapter(adapterCert);
+                for (int i = 0; i < arrayListCerts.size(); i++) {
+                    adapterCert.add(arrayListCerts.get(i));
+                }
+                listCerts.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+                listCerts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        selectedCert = parent.getItemAtPosition(position).toString();
+                        Log.d("TAG", selectedCert);
+                    }
+                });
+                Button buttonSaveCert = (Button) layoutCert.findViewById(R.id.button_save_cert);
+                buttonSaveCert.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        textViewAddCert.setText(selectedCert);
+                        popupWindowCert.dismiss();
+                    }
+                });
+
+                Button buttonCloseCertPopup = (Button) layoutCert.findViewById(R.id.button_cancel_cert);
                 buttonCloseCertPopup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindowCertif.dismiss();
+                        popupWindowCert.dismiss();
                     }
                 });
                 break;
@@ -209,6 +276,7 @@ public class ExtraInfoActivity extends Activity implements View.OnClickListener 
                 this.finish();
                 break;
             case R.id.button_save:
+                EditText editTextToeic = (EditText) findViewById(R.id.editText_toeic);
                 String stringScore = editTextToeic.getText().toString();
                 if (stringScore.equals("")) {
                     Toast.makeText(this, "토익점수를 입력해주세요.", Toast.LENGTH_LONG).show();

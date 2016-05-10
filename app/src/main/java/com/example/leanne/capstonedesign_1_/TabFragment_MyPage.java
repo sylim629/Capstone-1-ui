@@ -2,6 +2,7 @@ package com.example.leanne.capstonedesign_1_;
 
 /**
  * Created by Chloe on 4/11/2016.
+ * 개인정보수정 페이지. 유저의 기본 정보를 보여주고 버튼으로 이동 가능하다.
  */
 
 import android.content.Intent;
@@ -16,10 +17,7 @@ import android.widget.TextView;
 
 public class TabFragment_MyPage extends Fragment implements View.OnClickListener {
 
-    private Button editMyInfo, editRankingSettings;
     private TextView textName, textId, textMajor, textWishCompType, textWishComp;
-    private ImageButton settings;
-    private String sName, sId, sMajor, sWishCompType, sWishComp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,29 +27,29 @@ public class TabFragment_MyPage extends Fragment implements View.OnClickListener
     }
 
     private void initView(View v) {
-        editMyInfo = (Button)v.findViewById(R.id.button_edit_myinfo);
-        editRankingSettings = (Button)v.findViewById(R.id.button_edit_rankings);
-        settings = (ImageButton)v.findViewById(R.id.button_settings);
+        Button editMyInfo = (Button) v.findViewById(R.id.button_edit_myinfo);
+        Button editRankingSettings = (Button) v.findViewById(R.id.button_edit_rankings);
+        ImageButton settings = (ImageButton) v.findViewById(R.id.button_settings);
         editMyInfo.setOnClickListener(this);
         editRankingSettings.setOnClickListener(this);
         settings.setOnClickListener(this);
 
-        textName = (TextView)v.findViewById(R.id.mypage_name);
-        textId = (TextView)v.findViewById(R.id.mypage_id);
-        textMajor = (TextView)v.findViewById(R.id.mypage_major);
-        textWishCompType = (TextView)v.findViewById(R.id.mypage_wish_company_type);
-        textWishComp = (TextView)v.findViewById(R.id.mypage_wish_company);
+        textName = (TextView) v.findViewById(R.id.mypage_name);
+        textId = (TextView) v.findViewById(R.id.mypage_id);
+        textMajor = (TextView) v.findViewById(R.id.mypage_major);
+        textWishCompType = (TextView) v.findViewById(R.id.mypage_wish_company_type);
+        textWishComp = (TextView) v.findViewById(R.id.mypage_wish_company);
 
         showInfo();
     }
 
     private void showInfo() {
         // 서버에서 받은 값들로 TextView에서 보여주기
-       sName = "null";
-        sId = "null";
-        sMajor = "null";
-        sWishCompType = "null";
-        sWishComp = "null";
+        String sName = "null";
+        String sId = "null";
+        String sMajor = "null";
+        String sWishCompType = "null";
+        String sWishComp = "null";
 
         textName.setText(sName);
         textId.setText(sId);
@@ -62,7 +60,7 @@ public class TabFragment_MyPage extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.button_edit_myinfo:
                 Intent goEditMyInfo = new Intent(getActivity(), EditMyInfoActivity.class);
                 startActivity(goEditMyInfo);

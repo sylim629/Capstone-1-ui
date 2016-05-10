@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="개인 정보 수정"
+            android:text="@string/edit_my_info"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
     </LinearLayout>
 
     <ScrollView
@@ -33,7 +33,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:gravity="center_vertical"
             android:orientation="vertical">
@@ -42,96 +42,96 @@
                 android:id="@+id/name_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/text_user_name"
-                android:text="이름"
+                android:layout_toStartOf="@+id/text_user_name"
+                android:text="@string/name"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/text_user_name"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:text="임수연"
+                android:text="@string/name_temp"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/id_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/name_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/text_user_id"
-                android:text="아이디"
+                android:layout_toStartOf="@+id/text_user_id"
+                android:text="@string/id"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/text_user_id"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/name_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:text="limlean590"
+                android:text="@string/limlean590"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/uni_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/id_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/uni_extra_input"
-                android:text="대학"
+                android:layout_toStartOf="@+id/uni_extra_input"
+                android:text="@string/university"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/uni_extra_input"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/id_extra"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
-                android:hint="-찾기-"
+                android:hint="@string/search"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColorHint="@color/light_gray"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/major_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/uni_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/spinner_major"
-                android:text="전공"
+                android:layout_toStartOf="@+id/spinner_major"
+                android:text="@string/major"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinner_major"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/uni_extra"
                 android:background="@android:color/white"
                 android:drawSelectorOnTop="true"
@@ -142,20 +142,20 @@
                 android:id="@+id/comp_type_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/major_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/spinner_company_type"
-                android:text="회사종류"
+                android:layout_toStartOf="@+id/spinner_company_type"
+                android:text="@string/type_of_company"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinner_company_type"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/major_extra"
                 android:background="@android:color/white"
                 android:drawSelectorOnTop="true"
@@ -163,23 +163,23 @@
                 android:prompt="@string/choose" />
 
             <TextView
-                android:id="@+id/wishduty_extra"
+                android:id="@+id/text_duty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/comp_type_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/spinner_company_duty"
-                android:text="희망직무"
+                android:layout_toStartOf="@+id/spinner_company_duty"
+                android:text="@string/duty"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinner_company_duty"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/comp_type_extra"
                 android:background="@android:color/white"
                 android:drawSelectorOnTop="true"
@@ -187,28 +187,28 @@
                 android:prompt="@string/choose" />
 
             <TextView
-                android:id="@+id/wishcomp_extra"
+                android:id="@+id/text_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/wishduty_extra"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/text_duty"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/wishcomp_extra_input"
-                android:text="희망회사"
+                android:layout_toStartOf="@+id/input_company"
+                android:text="@string/company"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/wishcomp_extra_input"
+                android:id="@+id/input_company"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/wishduty_extra"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/text_duty"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
-                android:hint="희망회사 입력"
+                android:hint="@string/enter_company"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColorHint="@color/light_gray" />
@@ -217,21 +217,21 @@
                 android:id="@+id/sex_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@id/wishcomp_extra"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/text_company"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/layout_gender"
-                android:text="성별"
+                android:layout_toStartOf="@+id/layout_gender"
+                android:text="@string/gender"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:id="@+id/layout_gender"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/wishcomp_extra"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/text_company"
                 android:orientation="horizontal"
                 android:paddingBottom="10dp">
 
@@ -243,7 +243,7 @@
                     android:background="@drawable/button_boarder_before"
                     android:gravity="center"
                     android:onClick="onClick"
-                    android:text="남자"
+                    android:text="@string/male"
                     android:textColor="@color/light_gray" />
 
                 <Button
@@ -254,7 +254,7 @@
                     android:background="@drawable/button_boarder_before"
                     android:gravity="center"
                     android:onClick="onClick"
-                    android:text="여자"
+                    android:text="@string/female"
                     android:textColor="@color/light_gray" />
             </LinearLayout>
 
@@ -262,51 +262,51 @@
                 android:id="@+id/age_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/sex_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/text_birthday"
-                android:text="생년월일"
+                android:layout_toStartOf="@+id/text_birthday"
+                android:text="@string/birthday"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/text_birthday"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/sex_extra"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/text_toeic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/age_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/editText_toeic"
-                android:text="토익점수"
+                android:layout_toStartOf="@+id/editText_toeic"
+                android:text="@string/toeic_score"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editText_toeic"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/age_extra"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
-                android:hint="토익점수 입력"
+                android:hint="@string/enter_toeic_score"
                 android:inputType="number"
                 android:maxLength="3"
                 android:padding="10dp"
@@ -317,50 +317,47 @@
                 android:id="@+id/text_certif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:layout_below="@id/text_toeic"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@+id/certif_input"
-                android:text="자격증"
+                android:layout_toStartOf="@+id/certif_input"
+                android:text="@string/certificate"
                 android:textColor="@android:color/white"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/certif_input"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_below="@id/text_toeic"
                 android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
-                android:hint="-추가-"
+                android:hint="@string/add"
                 android:padding="10dp"
                 android:singleLine="true"
                 android:textColorHint="@color/light_gray"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/text_certif"
+                android:background="@color/mint" />
         </RelativeLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottom"
+    <Button
+        android:id="@+id/button_my_info_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:background="@color/mint"
-        android:elevation="6dp"
-        android:padding="20dp">
-
-        <Button
-            android:id="@+id/button_my_info_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/white"
-            android:text="저장"
-            android:textColor="@color/mint" />
-    </LinearLayout>
+        android:layout_centerVertical="true"
+        android:background="@android:color/white"
+        android:text="@string/save"
+        android:textColor="@color/mint"
+        android:textSize="20sp" />
 
 </RelativeLayout>

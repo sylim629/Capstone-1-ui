@@ -1,27 +1,24 @@
 package com.example.leanne.capstonedesign_1_;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
+<<<<<<< HEAD
 import com.example.leanne.capstonedesign_1_.ListViewDemoAdaptor;
 
 import java.lang.reflect.Array;
+=======
+
+>>>>>>> 8df4a77968c4375eb609362874d9f8bc72d48bd1
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Chloe on 4/13/2016.
+ * 홈화면 랭킹 페이지. 랭킹 탭
  */
 public class TabFragment_Home extends ListFragment{
 
@@ -33,8 +30,7 @@ public class TabFragment_Home extends ListFragment{
         super.onCreate(savedInstanceState);
 
         // initialize the items list
-        mItems = new ArrayList<ListViewItem>();
-        Resources resources = getResources();
+        mItems = new ArrayList<>();
 
         /*RequestMsgSender userInfoMsgSender = (RequestMsgSender) new RequestMsgSender().execute("8;");
         String rankingResult = null;
@@ -94,7 +90,7 @@ public class TabFragment_Home extends ListFragment{
         mItems.add(new ListViewItem(5, "id_5", "컴퓨터공학부", "데이터베이스DBA", "자격증..?", "900", false));
 */
 
-       // initialize and set the list adapter
+        // initialize and set the list adapter
         setListAdapter(new ListViewDemoAdaptor(getActivity(), mItems));
     }
 

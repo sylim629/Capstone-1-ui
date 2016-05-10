@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by imsuyeon on 16. 4. 2..
+ * 그냥 스플래시. 일종의 로딩화면...?
  */
 public class SplashActivity extends Activity {
 
@@ -26,7 +26,7 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 skipLure = DataHolder.getInstance().getSkipLure();
-                if(skipLure == false)
+                if(!skipLure)
                     startActivity(lure);
                 else
                     startActivity(login);
