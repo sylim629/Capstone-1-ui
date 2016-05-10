@@ -146,7 +146,7 @@
             android:layout_height="wrap_content"
             android:background="@color/mint"
             android:textColor="@android:color/white"
-            android:layout_marginRight="5dp"
+            android:layout_margin="5dp"
             android:textSize="20dp"
             android:text="내정보 수정"/>
         <Button
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:background="@color/mint"
-            android:layout_marginLeft="5dp"
+            android:layout_margin="5dp"
             android:textSize="20dp"
             android:padding="10dp"
             android:text="랭킹 기준 수정"/>

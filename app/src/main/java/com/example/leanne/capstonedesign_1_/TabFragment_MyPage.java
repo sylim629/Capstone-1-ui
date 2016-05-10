@@ -29,10 +29,12 @@ public class TabFragment_MyPage extends Fragment implements View.OnClickListener
     private void initView(View v) {
         Button editMyInfo = (Button) v.findViewById(R.id.button_edit_myinfo);
         Button editRankingSettings = (Button) v.findViewById(R.id.button_edit_rankings);
+        Button seeAcceptRate = (Button) v.findViewById(R.id.accept_rate_btn);
         ImageButton settings = (ImageButton) v.findViewById(R.id.button_settings);
         editMyInfo.setOnClickListener(this);
         editRankingSettings.setOnClickListener(this);
         settings.setOnClickListener(this);
+        seeAcceptRate.setOnClickListener(this);
 
         textName = (TextView) v.findViewById(R.id.mypage_name);
         textId = (TextView) v.findViewById(R.id.mypage_id);
