@@ -23,4 +23,8 @@ public class ListViewItem {
         this.toeicScore = toeicScore;
         this.isFav = isFav;
     }
+
+    public String getId(){
+        return id;
+    }
 }

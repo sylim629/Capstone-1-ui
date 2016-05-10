@@ -55,7 +55,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         }
 
         // update the item view
-        ListViewItem item = getItem(position);
+        final ListViewItem item = getItem(position);
         viewHolder.ranking.setText(Integer.toString(item.ranking));
         viewHolder.id.setText(item.id);
         viewHolder.major.setText(item.major);
@@ -68,12 +68,12 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.addToFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("id check", viewHolder.id.toString());
+                    Log.d("id check", item.getId());
                     //System.out.println("clicked id: " + viewHolder.id.toString());  // check for id
                     //loggedInUser.addFav_id(viewHolder.id.toString());
                     viewHolder.addToFav.setVisibility(View.GONE);
                     viewHolder.remFromFav.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(), "clicked white heart:" + viewHolder.id.toString() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
             });
             viewHolder.isFav = true;
@@ -84,12 +84,12 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.remFromFav.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("id check", viewHolder.id.toString());
+                    Log.d("id check", item.getId());
                     //System.out.println("clicked id: " + viewHolder.id.toString());  // check for id
                     //loggedInUser.deleteFav_id(viewHolder.id.toString());
                     viewHolder.remFromFav.setVisibility(View.GONE);
                     viewHolder.addToFav.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(), "clicked red heart:" + viewHolder.id.toString() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
             });
             viewHolder.isFav = false;
