@@ -82,6 +82,13 @@ public class TabFragment_MyPage extends Fragment implements View.OnClickListener
                         R.anim.animation_enter_right2left,
                         R.anim.animation_leave_right2left);
                 break;
+            case R.id.accept_rate_btn:
+                Intent goAcceptRate = new Intent(getActivity(), AcceptRateActivity.class);
+                startActivity(goAcceptRate);
+                getActivity().overridePendingTransition(
+                        R.anim.animation_enter_right2left,
+                        R.anim.animation_leave_right2left);
+                break;
         }
     }
 

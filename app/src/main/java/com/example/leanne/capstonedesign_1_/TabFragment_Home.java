@@ -61,7 +61,7 @@ public class TabFragment_Home extends ListFragment{
             certifiInfo += tokens[i+9];
             toeicInfo += tokens[i+1];
             certifiInfo = certifiInfo.replace("|",",");
-            mItems.add(new ListViewItem(ranking, idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));  // 여기서 isFav도 같이 저장해서 넘김
+            mItems.add(new ListViewItem(ranking,idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));  // 여기서 isFav도 같이 저장해서 넘김
         }
 /*
         // 일단은 컴공 밖에 선택 못 하니까

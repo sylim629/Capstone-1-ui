@@ -122,6 +122,15 @@
                 android:layout_marginBottom="5dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"/>
         </LinearLayout>
+        <Button
+            android:id="@+id/accept_rate_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mint"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:text="합격 가능성 조회"/>
     </LinearLayout>
 
     <LinearLayout
@@ -130,15 +139,14 @@
         android:layout_gravity="center"
         android:layout_centerInParent="true"
         android:gravity="bottom"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginBottom="30dp">
         <Button
             android:id="@+id/button_edit_myinfo"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:background="@color/mint"
             android:textColor="@android:color/white"
-            android:layout_margin="3dp"
+            android:layout_marginRight="5dp"
             android:textSize="20dp"
             android:text="내정보 수정"/>
         <Button
@@ -147,7 +155,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:background="@color/mint"
-            android:layout_margin="3dp"
+            android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:padding="10dp"
             android:text="랭킹 기준 수정"/>
