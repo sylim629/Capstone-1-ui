@@ -5,13 +5,6 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
-<<<<<<< HEAD
-import com.example.leanne.capstonedesign_1_.ListViewDemoAdaptor;
-
-import java.lang.reflect.Array;
-=======
-
->>>>>>> 8df4a77968c4375eb609362874d9f8bc72d48bd1
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -32,19 +25,8 @@ public class TabFragment_Home extends ListFragment{
         // initialize the items list
         mItems = new ArrayList<>();
 
-        /*RequestMsgSender userInfoMsgSender = (RequestMsgSender) new RequestMsgSender().execute("8;");
-        String rankingResult = null;
-
-        try {
-            rankingResult = userInfoMsgSender.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        */
-
         loggedInUser = new LoggedInUser();
+        // 내가 테스트 하기 위해 그냥 만든 임의의 String
         String rankingResult = "5;id1;toeic1;age1;major1;company_type1;duty1;company_name1;gender1;univ1;certificate1;isEmp;id2;toeic2;age2;major2;company_type2;duty2;company_name2;gender2;univ2;certificate2;isEmp;id3;toeic3;age3;major3;company_type3;duty3;company_name3;gender3;univ3;certificate3;isEmp;id4;toeic4;age4;major4;company_type4;duty4;company_name4;gender4;univ4;certificate4;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
         int topN=0;
         String[] tokens = rankingResult.split(";");
@@ -63,7 +45,7 @@ public class TabFragment_Home extends ListFragment{
             ranking = i;
             String idInfo = new String("ID : ");
             for(int k=0; k<idFavs.size(); k++) {
-                if(idInfo.equals(idFavs.get(k)))
+                if(idInfo.equals(idFavs.get(k)))    // LoggedInUser의 Fav ID와 비교해서 일치하면 isFav = true. 아니면 false
                     isFav = true;
                 else
                     isFav = false;
@@ -79,7 +61,7 @@ public class TabFragment_Home extends ListFragment{
             certifiInfo += tokens[i+9];
             toeicInfo += tokens[i+1];
             certifiInfo = certifiInfo.replace("|",",");
-            mItems.add(new ListViewItem(ranking, idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));
+            mItems.add(new ListViewItem(ranking, idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));  // 여기서 isFav도 같이 저장해서 넘김
         }
 /*
         // 일단은 컴공 밖에 선택 못 하니까
