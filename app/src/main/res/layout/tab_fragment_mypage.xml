@@ -148,25 +148,28 @@
         android:layout_gravity="center"
         android:layout_centerInParent="true"
         android:gravity="bottom"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/button_edit_myinfo"
-            android:layout_width="170dp"
             android:layout_height="wrap_content"
+            android:layout_width="160dp"
             android:background="@color/mint"
             android:textColor="@android:color/white"
-            android:layout_margin="5dp"
             android:textSize="20dp"
-            android:text="내정보 수정"/>
+            android:text="내정보 수정"
+            android:layout_marginRight="5dp"/>
         <Button
+            android:layout_width="160dp"
             android:id="@+id/button_edit_rankings"
-            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:background="@color/mint"
-            android:layout_margin="5dp"
             android:textSize="20dp"
             android:padding="10dp"
-            android:text="랭킹 기준 수정"/>
+            android:text="랭킹 기준 수정"
+            android:layout_marginLeft="5dp"/>
     </LinearLayout>
 </LinearLayout>
