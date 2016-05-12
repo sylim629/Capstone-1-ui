@@ -131,6 +131,15 @@
             android:textSize="20dp"
             android:layout_marginTop="10dp"
             android:text="합격 가능성 조회"/>
+        <Button
+            android:id="@+id/recommend_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mint"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:text="회사/직무 추천"/>
     </LinearLayout>
 
     <LinearLayout

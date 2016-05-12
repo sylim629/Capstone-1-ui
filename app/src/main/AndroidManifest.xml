@@ -32,6 +32,7 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".SearchResultActivity" />
         <activity android:name=".AcceptRateActivity" />
+        <activity android:name=".RecommendActivity" />
     </application>
 
 </manifest>
