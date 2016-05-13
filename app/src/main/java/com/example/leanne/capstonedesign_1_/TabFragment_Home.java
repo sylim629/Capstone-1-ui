@@ -27,7 +27,7 @@ public class TabFragment_Home extends ListFragment{
 
         loggedInUser = new LoggedInUser();
         // 내가 테스트 하기 위해 그냥 만든 임의의 String
-        String rankingResult = "5;id1;toeic1;age1;major1;company_type1;duty1;company_name1;gender1;univ1;certificate1;isEmp;id2;toeic2;age2;major2;company_type2;duty2;company_name2;gender2;univ2;certificate2;isEmp;id3;toeic3;age3;major3;company_type3;duty3;company_name3;gender3;univ3;certificate3;isEmp;id4;toeic4;age4;major4;company_type4;duty4;company_name4;gender4;univ4;certificate4;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
+        String rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
         int topN=0;
         String[] tokens = rankingResult.split(";");
         for(int i = 0 ; i < tokens.length ; i++){
@@ -39,10 +39,8 @@ public class TabFragment_Home extends ListFragment{
 
         idFavs = loggedInUser.getFav_ids();
         boolean isFav = false;
-        int ranking = 0;
 
         for(int i = 1 ; j < topN ; i+=11, j++ ){
-            ranking = i;
             String idInfo = new String("ID : ");
             for(int k=0; k<idFavs.size(); k++) {
                 if(idInfo.equals(idFavs.get(k)))    // LoggedInUser의 Fav ID와 비교해서 일치하면 isFav = true. 아니면 false
@@ -61,7 +59,7 @@ public class TabFragment_Home extends ListFragment{
             certifiInfo += tokens[i+9];
             toeicInfo += tokens[i+1];
             certifiInfo = certifiInfo.replace("|",",");
-            mItems.add(new ListViewItem(ranking,idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));  // 여기서 isFav도 같이 저장해서 넘김
+            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFav));  // 여기서 isFav도 같이 저장해서 넘김
         }
 /*
         // 일단은 컴공 밖에 선택 못 하니까

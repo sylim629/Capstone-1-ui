@@ -57,7 +57,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
         // update the item view
         final ListViewItem item = getItem(position);
-        viewHolder.ranking.setText(Integer.toString(item.ranking));
+        viewHolder.ranking.setText(Integer.toString(position+1));
         viewHolder.id.setText(item.id);
         viewHolder.major.setText(item.major);
         viewHolder.wish_duty.setText(item.wish_duty);
