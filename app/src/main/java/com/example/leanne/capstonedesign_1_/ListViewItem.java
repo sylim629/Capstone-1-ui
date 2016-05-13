@@ -5,7 +5,6 @@ package com.example.leanne.capstonedesign_1_;
  * 랭킹 화면에 나타나는 각 아이템에 출력될 내용물들 정의 클래스
  */
 public class ListViewItem {
-    public final int ranking;
     public final String id;
     public final String major;
     public final String wish_duty;
@@ -13,8 +12,7 @@ public class ListViewItem {
     public final String toeicScore;
     public final boolean isFav;
 
-    public ListViewItem(int ranking, String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav) {
-        this.ranking = ranking;
+    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav) {
         this.id = id;
         this.major = major;
         this.wish_duty = wish_duty;

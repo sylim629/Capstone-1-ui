@@ -1,8 +1,9 @@
 package com.example.leanne.capstonedesign_1_;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.media.Image;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,19 +11,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
-import java.util.Locale;
+import java.util.logging.LoggingMXBean;
 
 /**
  * Created by Chloe on 4/13/2016.
- * 랭킹 뷰를 리스트뷰로 표현하기 위한 아답터
  */
 public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
-//    LoggedInUser loggedInUser;
+    LoggedInUser loggedInUser;
 
     public ListViewDemoAdaptor(Context context, List<ListViewItem> items) {
         super(context, R.layout.listview_item, items);
@@ -32,7 +33,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
 
-        if (convertView == null) {
+        if(convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.listview_item, parent, false);
@@ -46,7 +47,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.certificates = (TextView) convertView.findViewById(R.id.rankings_certificates);
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
             viewHolder.fav = (ImageButton) convertView.findViewById(R.id.heart_white);
-            // viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
+           // viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
 
             convertView.setTag(viewHolder);
         } else {
@@ -56,22 +57,21 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
         // update the item view
         final ListViewItem item = getItem(position);
-        viewHolder.ranking.setText(String.format(Locale.US, "%d", item.ranking));
+        viewHolder.ranking.setText(Integer.toString(position+1));
         viewHolder.id.setText(item.id);
         viewHolder.major.setText(item.major);
         viewHolder.wish_duty.setText(item.wish_duty);
         viewHolder.certificates.setText(item.certificates);
         viewHolder.toeicScore.setText(item.toeicScore);
         viewHolder.fav.setOnClickListener(new View.OnClickListener() {  // 하트 클릭 리스너
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View v) {
-                if (viewHolder.getIsFav())   // isFav 값 잘 받아오는지 확인
+                if(viewHolder.getIsFav() == true)   // isFav 값 잘 받아오는지 확인
                     Log.d("isFav", "true");
                 else
                     Log.d("isFav", "false");
                 Log.d("id check", item.getId());    // id 잘 받아오는지 확인
-                if (!viewHolder.getIsFav()) {  // 흰 하트일 때
+                if(viewHolder.getIsFav() == false) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
                     viewHolder.isFav = true;    // 클릭했으니 이제 isFav는 true
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
