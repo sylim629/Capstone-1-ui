@@ -57,11 +57,6 @@ public class LoggedInUser extends Application {
         search_age = 0;
 
         fav_ids = new ArrayList<String>();      //일단 이 맴버변수는 필요하다!
-        fav_ids.add("id1");
-        fav_ids.add("id3");
-        fav_ids.add("id5");
-
-
     }
 
 
@@ -192,11 +187,15 @@ public class LoggedInUser extends Application {
         search_univ = input;
     }
 
-    public void setFav_ids(String input){
+    /*public void setFav_ids(String input){
         String[] tokens = input.split("|",0);
         for(int i = 0 ; i < tokens.length ; i++){
             fav_ids.add( new String(tokens[i]) );   //Fav아이디들을 arrayList에 저장
         }
+    }*/
+
+    public void setFav_ids(String input) {  // 원래는 위에 주석 처리된 함수였는데 그냥 하나씩 넣는걸로 바꿈.. 괜히 복잡한 것 같아서.. 아니면 내가 놓친 다른 이유가 있었는지??
+        fav_ids.add(input);
     }
 
     public static LoggedInUser getLoggedinUser(){
@@ -205,14 +204,15 @@ public class LoggedInUser extends Application {
 
     private static LoggedInUser loggedinUser = new LoggedInUser();
 
-    /* adds new id to FavId ArrayList */
+    // 그냥 다 setFav_ids로 하면 안되나?? 이것도 내가 놓친게 있는지ㅠㅠ?
+    /* adds new id to FavId ArrayList *//*
     public void addFav_id(String newFavId) {
 
-    }
+    }*/
 
     /* deletes id from FavId ArrayList */
     public void deleteFav_id(String deleteFavId) {
-
+        fav_ids.remove(deleteFavId);
     }
 
 }
