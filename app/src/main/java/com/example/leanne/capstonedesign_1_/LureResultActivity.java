@@ -33,7 +33,7 @@ public class LureResultActivity extends Activity implements View.OnClickListener
     }
 
     private void getToeicScore() {
-        score = "null"; // default
+        score = "3.2%"; // default
         // get score from server as String
         scoreToeic.setText(score);
     }
