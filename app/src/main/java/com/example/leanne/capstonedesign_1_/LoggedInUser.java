@@ -187,16 +187,12 @@ public class LoggedInUser extends Application {
         search_univ = input;
     }
 
-    /*public void setFav_ids(String input){
+   /* public void setFav_ids(String input){
         String[] tokens = input.split("|",0);
         for(int i = 0 ; i < tokens.length ; i++){
             fav_ids.add( new String(tokens[i]) );   //Fav아이디들을 arrayList에 저장
         }
     }*/
-
-    public void setFav_ids(String input) {  // 원래는 위에 주석 처리된 함수였는데 그냥 하나씩 넣는걸로 바꿈.. 괜히 복잡한 것 같아서.. 아니면 내가 놓친 다른 이유가 있었는지??
-        fav_ids.add(input);
-    }
 
     public static LoggedInUser getLoggedinUser(){
         return loggedinUser;
