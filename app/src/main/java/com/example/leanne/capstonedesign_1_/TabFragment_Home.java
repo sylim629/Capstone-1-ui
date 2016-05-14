@@ -25,7 +25,7 @@ public class TabFragment_Home extends ListFragment{
         // initialize the items list
         mItems = new ArrayList<>();
 
-        // 내가 테스트 하기 위해 그냥 만든 임의의 String
+        // 테스트 하기 위해 그냥 만든 임의의 String
         String rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
         int topN=0;
         String[] tokens = rankingResult.split(";");
@@ -66,14 +66,6 @@ public class TabFragment_Home extends ListFragment{
             certifiInfo = certifiInfo.replace("|",",");
             mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j]));  // 여기서 isFav도 같이 저장해서 넘김
         }
-/*
-        // 일단은 컴공 밖에 선택 못 하니까
-        mItems.add(new ListViewItem(1, "id_1", "컴퓨터공학부", "시스템프로그래머", "자격증..?", "900", false));
-        mItems.add(new ListViewItem(2, "id_2", "컴퓨터공학부", "웹프로그래머", "자격증..?", "900", false));
-        mItems.add(new ListViewItem(3, "id_3", "컴퓨터공학무", "응용프로그래머", "자격증..?", "900", false));
-        mItems.add(new ListViewItem(4, "id_4", "컴퓨터공학부", "하드웨어/소프트웨어", "자격증..?", "900", false));
-        mItems.add(new ListViewItem(5, "id_5", "컴퓨터공학부", "데이터베이스DBA", "자격증..?", "900", false));
-*/
 
         // initialize and set the list adapter
         setListAdapter(new ListViewDemoAdaptor(getActivity(), mItems));

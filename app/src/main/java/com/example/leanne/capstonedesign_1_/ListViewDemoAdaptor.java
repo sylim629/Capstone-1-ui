@@ -49,8 +49,6 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
             viewHolder.fav = (ImageButton) convertView.findViewById(R.id.heart_white);
 
-            // viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
-
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
@@ -74,23 +72,23 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.fav.setOnClickListener(new View.OnClickListener() {  // 하트 클릭 리스너
             @Override
             public void onClick(View v) {
-                if (item.isFav == true) {   // isFav 값 잘 받아오는지 확인
+                /*if (item.isFav == true) {   // isFav 값 잘 받아오는지 확인
                     Log.d("isFav", "true");
                 } else {
                     Log.d("isFav", "false");
                 }
-                Log.d("id check", item.getId());    // id 잘 받아오는지 확인
+                Log.d("id check", item.getId());    // id 잘 받아오는지 확인*/
                 if (item.isFav == false) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
                     item.isFav = true;    // 클릭했으니 이제 isFav는 true
-                    LoggedInUser.getInstance().setFav_ids(item.getId().substring(5));
-                    ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
+                    LoggedInUser.getInstance().setFav_ids(item.getId().substring(5));   // 앞에 있는 "ID : " 빼고 나머지 아이디 부분만 저장
+                    //ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 } else {   // 빨간 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 뜨면 무시..
                     item.isFav = false;   // 클릭했으니 다시 isFav는 false
-                    LoggedInUser.getInstance().deleteFav_id(item.getId().substring(5));
-                    ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
+                    LoggedInUser.getInstance().deleteFav_id(item.getId().substring(5));    // 앞에 있는 "ID : " 뺸 아이디 부분 찾아서 삭제
+                    //ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
             }
