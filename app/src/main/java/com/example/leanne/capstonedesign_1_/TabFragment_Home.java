@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 public class TabFragment_Home extends ListFragment{
 
     private List<ListViewItem> mItems;        // ListView items list
-    private LoggedInUser loggedInUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,10 +24,6 @@ public class TabFragment_Home extends ListFragment{
 
         // initialize the items list
         mItems = new ArrayList<>();
-
-        loggedInUser = new LoggedInUser();
-        loggedInUser.setFav_ids("iammeee");
-        loggedInUser.setFav_ids("gotrules");
 
         // 내가 테스트 하기 위해 그냥 만든 임의의 String
         String rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
@@ -41,7 +36,7 @@ public class TabFragment_Home extends ListFragment{
         int j=0;
         ArrayList<String> idFavs = new ArrayList<String>();
 
-        idFavs = loggedInUser.getFav_ids();
+        idFavs = LoggedInUser.getInstance().getFav_ids();
 
         boolean[] isFavArray = new boolean[topN];
         int k=0;

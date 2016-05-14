@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.LoggingMXBean;
 
@@ -23,7 +24,7 @@ import java.util.logging.LoggingMXBean;
  */
 public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
-    LoggedInUser loggedInUser;
+    private LoggedInUser loggedInUser;
 
     public ListViewDemoAdaptor(Context context, List<ListViewItem> items) {
         super(context, R.layout.listview_item, items);
@@ -73,20 +74,23 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.fav.setOnClickListener(new View.OnClickListener() {  // 하트 클릭 리스너
             @Override
             public void onClick(View v) {
-                if (item.isFav == true)   // isFav 값 잘 받아오는지 확인
+                if (item.isFav == true) {   // isFav 값 잘 받아오는지 확인
                     Log.d("isFav", "true");
-                else
+                } else {
                     Log.d("isFav", "false");
+                }
                 Log.d("id check", item.getId());    // id 잘 받아오는지 확인
                 if (item.isFav == false) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
                     item.isFav = true;    // 클릭했으니 이제 isFav는 true
-                    loggedInUser.setFav_ids(item.getId());
+                    LoggedInUser.getInstance().setFav_ids(item.getId().substring(5));
+                    ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 } else {   // 빨간 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 뜨면 무시..
                     item.isFav = false;   // 클릭했으니 다시 isFav는 false
-                    loggedInUser.deleteFav_id(item.getId());
+                    LoggedInUser.getInstance().deleteFav_id(item.getId().substring(5));
+                    ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
             }
