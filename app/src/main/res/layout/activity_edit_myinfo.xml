@@ -6,29 +6,23 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/top"
+    <TextView
+        android:id="@+id/title_register_extra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/mint"
+        android:gravity="center"
         android:paddingBottom="10dp"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/title_register_extra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/edit_my_info"
-            android:textColor="@android:color/white"
-            android:textSize="25sp" />
-    </LinearLayout>
+        android:paddingTop="20dp"
+        android:text="@string/edit_my_info"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_my_info_save"
-        android:layout_below="@+id/top">
+        android:layout_below="@+id/title_register_extra">
 
         <RelativeLayout
             android:id="@+id/contents_layout"
@@ -42,12 +36,9 @@
                 android:id="@+id/name_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/text_user_name"
-                android:layout_toLeftOf="@+id/text_user_name"
                 android:text="@string/name"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -56,7 +47,6 @@
                 android:id="@+id/text_user_name"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
@@ -68,13 +58,10 @@
                 android:id="@+id/id_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/name_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/text_user_id"
-                android:layout_toLeftOf="@+id/text_user_id"
                 android:text="@string/id"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -83,7 +70,6 @@
                 android:id="@+id/text_user_id"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/name_extra"
                 android:layout_marginBottom="20dp"
@@ -96,13 +82,10 @@
                 android:id="@+id/uni_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/id_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/uni_extra_input"
-                android:layout_toLeftOf="@+id/uni_extra_input"
                 android:text="@string/university"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -111,7 +94,6 @@
                 android:id="@+id/uni_extra_input"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/id_extra"
                 android:layout_marginBottom="10dp"
@@ -127,13 +109,10 @@
                 android:id="@+id/major_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/uni_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/spinner_major"
-                android:layout_toLeftOf="@+id/spinner_major"
                 android:text="@string/major"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -142,7 +121,6 @@
                 android:id="@+id/spinner_major"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/uni_extra"
                 android:background="@android:color/white"
@@ -154,13 +132,10 @@
                 android:id="@+id/comp_type_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/major_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/spinner_company_type"
-                android:layout_toLeftOf="@+id/spinner_company_type"
                 android:text="@string/type_of_company"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -169,7 +144,6 @@
                 android:id="@+id/spinner_company_type"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/major_extra"
                 android:background="@android:color/white"
@@ -181,13 +155,10 @@
                 android:id="@+id/text_duty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/comp_type_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/spinner_company_duty"
-                android:layout_toLeftOf="@+id/spinner_company_duty"
                 android:text="@string/duty"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -196,7 +167,6 @@
                 android:id="@+id/spinner_company_duty"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/comp_type_extra"
                 android:background="@android:color/white"
@@ -208,13 +178,10 @@
                 android:id="@+id/text_company"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/text_duty"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/input_company"
-                android:layout_toLeftOf="@+id/input_company"
                 android:text="@string/company"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -223,7 +190,6 @@
                 android:id="@+id/input_company"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/text_duty"
                 android:layout_marginBottom="10dp"
@@ -238,13 +204,10 @@
                 android:id="@+id/sex_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/text_company"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/layout_gender"
-                android:layout_toLeftOf="@+id/layout_gender"
                 android:text="@string/gender"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -253,7 +216,6 @@
                 android:id="@+id/layout_gender"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/text_company"
                 android:orientation="horizontal"
@@ -286,13 +248,10 @@
                 android:id="@+id/age_extra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/sex_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/text_birthday"
-                android:layout_toLeftOf="@+id/text_birthday"
                 android:text="@string/birthday"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -301,7 +260,6 @@
                 android:id="@+id/text_birthday"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/sex_extra"
                 android:layout_marginBottom="10dp"
@@ -315,13 +273,10 @@
                 android:id="@+id/text_toeic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/age_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/editText_toeic"
-                android:layout_toLeftOf="@+id/editText_toeic"
                 android:text="@string/toeic_score"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -330,7 +285,6 @@
                 android:id="@+id/editText_toeic"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/age_extra"
                 android:layout_marginBottom="10dp"
@@ -347,13 +301,10 @@
                 android:id="@+id/text_certif"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/text_toeic"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:layout_toStartOf="@+id/certif_input"
-                android:layout_toLeftOf="@+id/certif_input"
                 android:text="@string/certificate"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -362,16 +313,23 @@
                 android:id="@+id/certif_input"
                 android:layout_width="210dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/text_toeic"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="10dp"
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:hint="@string/add"
                 android:padding="10dp"
                 android:textColorHint="@color/light_gray"
                 android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/filler_layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/certif_input"
+                android:background="@color/mint"
+                android:orientation="horizontal" />
         </RelativeLayout>
     </ScrollView>
 
@@ -385,5 +343,4 @@
         android:text="@string/save"
         android:textColor="@color/mint"
         android:textSize="20sp" />
-
 </RelativeLayout>

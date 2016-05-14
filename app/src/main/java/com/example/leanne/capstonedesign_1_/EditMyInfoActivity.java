@@ -1,8 +1,10 @@
 package com.example.leanne.capstonedesign_1_;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Created by Chloe on 4/12/2016.
@@ -46,7 +50,7 @@ public class EditMyInfoActivity extends AppCompatActivity
     static String selectedUni;
     private PopupWindow popupWindowCert;
     TextView textViewAddCert;
-    static String selectedCert;
+    static String selectedCert = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,7 +129,7 @@ public class EditMyInfoActivity extends AppCompatActivity
     private void addFirstCertificate() {
         LayoutInflater inflater = (LayoutInflater) EditMyInfoActivity.this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View popupLayout = inflater.inflate(R.layout.activity_popup_certificate,
+        final View popupLayout = inflater.inflate(R.layout.activity_popup_certificate,
                 (ViewGroup) findViewById(R.id.popup_element));
         popupWindowCert = new PopupWindow(popupLayout, screenWidth / 4 * 3, screenHeight / 4 * 3);
         popupWindowCert.showAtLocation(popupLayout, Gravity.CENTER, 0, 0);
@@ -163,26 +167,38 @@ public class EditMyInfoActivity extends AppCompatActivity
         });
         Button buttonSaveCert = (Button) popupLayout.findViewById(R.id.button_save_cert);
         buttonSaveCert.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                textViewAddCert.setText(selectedCert);
+                if (Objects.equals(selectedCert, "")) {
+                    Toast.makeText(popupLayout.getContext(), "자격증을 입력해 주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    RelativeLayout baseLayout = (RelativeLayout) findViewById(R.id.contents_layout);
+                    TextView newInputText = new TextView(EditMyInfoActivity.this);
+                    newInputText.setWidth(textViewAddCert.getWidth());
+                    newInputText.setHeight(textViewAddCert.getHeight());
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule((RelativeLayout.ALIGN_PARENT_RIGHT));
+                    params.addRule(RelativeLayout.BELOW, R.id.certif_input);
+                    params.setMargins(0, 0, 0, 100);
+                    newInputText.setBackgroundColor(Color.WHITE);
+                    newInputText.setClickable(true);
+                    newInputText.setHint(R.string.add);
+                    newInputText.setPadding(30, 20, 20, 20);
+                    newInputText.setHintTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
+                    newInputText.setTextSize(20.f);
+                    baseLayout.addView(newInputText, params);
 
-                RelativeLayout baseLayout = new RelativeLayout(EditMyInfoActivity.this);
-                TextView newInputText = new TextView(EditMyInfoActivity.this);
-                newInputText.setWidth(textViewAddCert.getWidth());
-                newInputText.setHeight(textViewAddCert.getHeight());
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.certif_input);
-                newInputText.setBackgroundColor(Color.WHITE);
-                newInputText.setClickable(true);
-                newInputText.setHint(R.string.add);
-                newInputText.setPadding(10, 10, 10, 10);
-                newInputText.setHintTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
-                newInputText.setTextSize(18.f);
-                baseLayout.addView(newInputText, params);
+                    LinearLayout fillerLayout = (LinearLayout) findViewById(R.id.filler_layout);
+                    RelativeLayout.LayoutParams fillerParams = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    fillerParams.addRule(RelativeLayout.BELOW, newInputText.getId());
+                    fillerLayout.setLayoutParams(fillerParams);
 
-                popupWindowCert.dismiss();
+                    textViewAddCert.setText(selectedCert);
+                    popupWindowCert.dismiss();
+                }
             }
         });
 
@@ -190,6 +206,7 @@ public class EditMyInfoActivity extends AppCompatActivity
         buttonCloseCertPopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedCert = "";
                 popupWindowCert.dismiss();
             }
         });
