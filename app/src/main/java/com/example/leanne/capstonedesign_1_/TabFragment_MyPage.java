@@ -50,7 +50,7 @@ public class TabFragment_MyPage extends Fragment implements View.OnClickListener
 
     private void showInfo() {
         // 서버에서 받은 값들로 TextView에서 보여주기
-        String sName = "홍길동";
+        String sName = "우지호";
         String sId = "gotrules";
         String sMajor = "컴퓨터공학부";
         String sWishCompType = "공기업";

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.LoggingMXBean;
 
@@ -23,7 +24,7 @@ import java.util.logging.LoggingMXBean;
  */
 public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
-    LoggedInUser loggedInUser;
+    private LoggedInUser loggedInUser;
 
     public ListViewDemoAdaptor(Context context, List<ListViewItem> items) {
         super(context, R.layout.listview_item, items);
@@ -33,7 +34,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
 
-        if(convertView == null) {
+        if (convertView == null) {
             // inflate the GridView item layout
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.listview_item, parent, false);
@@ -47,7 +48,6 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.certificates = (TextView) convertView.findViewById(R.id.rankings_certificates);
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
             viewHolder.fav = (ImageButton) convertView.findViewById(R.id.heart_white);
-           // viewHolder.remFromFav = (ImageButton) convertView.findViewById(R.id.heart_red);
 
             convertView.setTag(viewHolder);
         } else {
@@ -57,27 +57,38 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
 
         // update the item view
         final ListViewItem item = getItem(position);
-        viewHolder.ranking.setText(Integer.toString(position+1));
+        viewHolder.ranking.setText(Integer.toString(position + 1));
         viewHolder.id.setText(item.id);
         viewHolder.major.setText(item.major);
         viewHolder.wish_duty.setText(item.wish_duty);
         viewHolder.certificates.setText(item.certificates);
         viewHolder.toeicScore.setText(item.toeicScore);
+
+        if (item.isFav == true)
+            viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));
+        else
+            viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));
+
         viewHolder.fav.setOnClickListener(new View.OnClickListener() {  // 하트 클릭 리스너
             @Override
             public void onClick(View v) {
-                if(viewHolder.getIsFav() == true)   // isFav 값 잘 받아오는지 확인
+                /*if (item.isFav == true) {   // isFav 값 잘 받아오는지 확인
                     Log.d("isFav", "true");
-                else
+                } else {
                     Log.d("isFav", "false");
-                Log.d("id check", item.getId());    // id 잘 받아오는지 확인
-                if(viewHolder.getIsFav() == false) {  // 흰 하트일 때
+                }
+                Log.d("id check", item.getId());    // id 잘 받아오는지 확인*/
+                if (item.isFav == false) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
-                    viewHolder.isFav = true;    // 클릭했으니 이제 isFav는 true
+                    item.isFav = true;    // 클릭했으니 이제 isFav는 true
+                    LoggedInUser.getInstance().setFav_ids(item.getId().substring(5));   // 앞에 있는 "ID : " 빼고 나머지 아이디 부분만 저장
+                    //ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 } else {   // 빨간 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 뜨면 무시..
-                    viewHolder.isFav = false;   // 클릭했으니 다시 isFav는 false
+                    item.isFav = false;   // 클릭했으니 다시 isFav는 false
+                    LoggedInUser.getInstance().deleteFav_id(item.getId().substring(5));    // 앞에 있는 "ID : " 뺸 아이디 부분 찾아서 삭제
+                    //ArrayList<String> checkIdFavs = LoggedInUser.getInstance().getFav_ids();    // for checking favIds
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -94,11 +105,5 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
     private static class ViewHolder {
         TextView ranking, id, major, wish_duty, certificates, toeicScore;
         ImageButton fav;
-        boolean isFav;  // 이게 하트 클릭 여부 나타내는거
-
-        public boolean getIsFav() {
-            return isFav;
-        }
-
     }
 }

@@ -10,7 +10,7 @@ public class ListViewItem {
     public final String wish_duty;
     public final String certificates;
     public final String toeicScore;
-    public final boolean isFav;
+    public boolean isFav;
 
     public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav) {
         this.id = id;
