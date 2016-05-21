@@ -305,16 +305,16 @@ public class EditMyInfoActivity extends AppCompatActivity
                 });
                 // 일단 테스트를 위해 중앙대학교로 지정
                 arrayListUni.add("중앙대학교");
-                final ListView listViewComp = (ListView) layoutUni.findViewById(R.id.list_uni);
+                final ListView listViewUni = (ListView) layoutUni.findViewById(R.id.list_uni);
                 final ArrayAdapter<String> adapterUni = new ArrayAdapter<>(this,
                         android.R.layout.simple_list_item_single_choice);
-                listViewComp.setAdapter(adapterUni);
+                listViewUni.setAdapter(adapterUni);
                 for (int i = 0; i < arrayListUni.size(); i++) {
                     adapterUni.add(arrayListUni.get(i));
                 }
-                listViewComp.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                listViewUni.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-                listViewComp.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listViewUni.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         selectedUni = parent.getItemAtPosition(position).toString();

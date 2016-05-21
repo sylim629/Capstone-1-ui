@@ -3,9 +3,10 @@
     android:layout_height="match_parent"
     android:background="@color/mint">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="@color/mint"
         android:padding="20dp">
@@ -16,9 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:text="추가 정보 입력"
+            android:text="@string/input_extra_info"
             android:textColor="@android:color/white"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/uni_extra"
@@ -29,9 +30,9 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:layout_toLeftOf="@+id/uni_extra_input"
-            android:text="대학"
+            android:text="@string/university"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/uni_extra_input"
@@ -42,11 +43,11 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:hint="-찾기-"
+            android:hint="@string/search"
             android:padding="10dp"
             android:singleLine="true"
             android:textColorHint="@color/light_gray"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/major_extra"
@@ -56,10 +57,9 @@
             android:layout_below="@id/uni_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/spinner_major"
-            android:text="전공"
+            android:text="@string/major"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_major"
@@ -80,10 +80,9 @@
             android:layout_below="@id/major_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/spinner_company_type"
-            android:text="회사종류"
+            android:text="@string/type_of_company"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_company_type"
@@ -104,10 +103,9 @@
             android:layout_below="@id/comp_type_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/spinner_company_duty"
-            android:text="희망직무"
+            android:text="@string/duty"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_company_duty"
@@ -128,12 +126,11 @@
             android:layout_below="@id/text_duty"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/input_company"
-            android:text="희망회사"
+            android:text="@string/company"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/input_company"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
@@ -142,10 +139,11 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:hint="희망회사 입력"
+            android:hint="@string/enter_company"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColorHint="@color/light_gray" />
+            android:textColorHint="@color/light_gray"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/sex_extra"
@@ -155,10 +153,9 @@
             android:layout_below="@id/text_company"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/layout_gender"
-            android:text="성별"
+            android:text="@string/gender"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:id="@+id/layout_gender"
@@ -177,7 +174,7 @@
                 android:background="@drawable/button_boarder_before"
                 android:gravity="center"
                 android:onClick="onClick"
-                android:text="남자"
+                android:text="@string/male"
                 android:textColor="@color/light_gray" />
 
             <Button
@@ -188,7 +185,7 @@
                 android:background="@drawable/button_boarder_before"
                 android:gravity="center"
                 android:onClick="onClick"
-                android:text="여자"
+                android:text="@string/female"
                 android:textColor="@color/light_gray" />
         </LinearLayout>
 
@@ -200,10 +197,9 @@
             android:layout_below="@id/sex_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/text_birthday"
-            android:text="생년월일"
+            android:text="@string/birthday"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/text_birthday"
@@ -216,7 +212,7 @@
             android:clickable="true"
             android:padding="10dp"
             android:singleLine="true"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/text_toeic"
@@ -226,10 +222,9 @@
             android:layout_below="@id/age_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/editText_toeic"
-            android:text="토익점수"
+            android:text="@string/toeic_score"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText_toeic"
@@ -240,7 +235,7 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:hint="토익점수 입력"
+            android:hint="@string/enter_toeic_score"
             android:inputType="number"
             android:maxLength="3"
             android:padding="10dp"
@@ -255,10 +250,9 @@
             android:layout_below="@id/text_toeic"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@+id/certif_input"
-            android:text="자격증"
+            android:text="@string/certificate"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/certif_input"
@@ -269,13 +263,13 @@
             android:layout_marginBottom="10dp"
             android:background="@android:color/white"
             android:clickable="true"
-            android:hint="-추가-"
+            android:hint="@string/add"
             android:padding="10dp"
-            android:singleLine="true"
             android:textColorHint="@color/light_gray"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <LinearLayout
+            android:id="@+id/layout_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_certif"
@@ -291,7 +285,7 @@
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:onClick="onClick"
-                android:text="건너뛰기"
+                android:text="@string/skip"
                 android:textColor="@color/mint" />
 
             <LinearLayout
@@ -308,7 +302,7 @@
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:onClick="onClick"
-                android:text="저장"
+                android:text="@string/save"
                 android:textColor="@color/mint" />
         </LinearLayout>
     </RelativeLayout>

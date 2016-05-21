@@ -27,4 +27,6 @@
     <string name="ok">확인</string>
     <string name="add_certs">자격증 추가</string>
     <string name="find_company">회사 찾기</string>
+    <string name="input_extra_info">추가 정보 입력</string>
+    <string name="skip">건너뛰기</string>
 </resources>
