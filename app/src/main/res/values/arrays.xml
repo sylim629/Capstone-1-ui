@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="max_gpa">
+        <item>-선택-</item>
+        <item>4.0</item>
+        <item>4.5</item>
+    </string-array>
+    <string-array name="work_exp">
+        <item>-선택-</item>
+        <item>인턴</item>
+        <item>근무</item>
+    </string-array>
     <string-array name="majors">
         <item>-선택-</item>
         <item>컴퓨터공학</item>

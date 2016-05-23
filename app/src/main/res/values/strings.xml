@@ -29,4 +29,7 @@
     <string name="find_company">회사 찾기</string>
     <string name="input_extra_info">추가 정보 입력</string>
     <string name="skip">건너뛰기</string>
+    <string name="gpa">학점</string>
+    <string name="work_exp">대표경력사항</string>
+    <string name="company_exp">근무기관명</string>
 </resources>

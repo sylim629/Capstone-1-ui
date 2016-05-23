@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -49,6 +50,7 @@ public class ExtraInfoActivity extends AppCompatActivity
 
     private PopupWindow popupCompany;
     TextView tvSelectedComp;
+    TextView tvSelectedCompExp;
     static String selectedCompany;
     private PopupWindow popupWindowUni;
     TextView textViewUniSearch;
@@ -70,6 +72,8 @@ public class ExtraInfoActivity extends AppCompatActivity
     }
 
     public void initView() {
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         buttonMale = (Button) findViewById(R.id.button_male);
         buttonFemale = (Button) findViewById(R.id.button_female);
         isMaleClicked = false;
@@ -86,6 +90,8 @@ public class ExtraInfoActivity extends AppCompatActivity
         tvSelectedComp.setOnClickListener(this);
         textViewUniSearch = (TextView) findViewById(R.id.uni_extra_input);
         textViewUniSearch.setOnClickListener(this);
+        tvSelectedCompExp = (TextView) findViewById(R.id.input_company_exp);
+        tvSelectedCompExp.setOnClickListener(this);
         textViewAddCert = (TextView) findViewById(R.id.certif_input);
         textViewAddCert.setOnClickListener(this);
 
@@ -94,6 +100,12 @@ public class ExtraInfoActivity extends AppCompatActivity
                 android.R.layout.simple_spinner_item);
         adapterMajor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMajor.setAdapter(adapterMajor);
+
+        Spinner spinnerGPA = (Spinner) findViewById(R.id.spinner_gpamax);
+        ArrayAdapter adapterGPA = ArrayAdapter.createFromResource(this, R.array.max_gpa,
+                android.R.layout.simple_spinner_item);
+        adapterGPA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGPA.setAdapter(adapterGPA);
 
         Spinner spinnerCompType = (Spinner) findViewById(R.id.spinner_company_type);
         ArrayAdapter adapterCompType = ArrayAdapter.createFromResource(this, R.array.company_types,
@@ -106,6 +118,12 @@ public class ExtraInfoActivity extends AppCompatActivity
                 android.R.layout.simple_spinner_item);
         adapterCompDuty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCompDuty.setAdapter(adapterCompDuty);
+
+        Spinner spinnerWorkExp = (Spinner) findViewById(R.id.spinner_workexp_type);
+        ArrayAdapter adapterWorkExp = ArrayAdapter.createFromResource(this, R.array.work_exp,
+                android.R.layout.simple_spinner_item);
+        adapterWorkExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerWorkExp.setAdapter(adapterWorkExp);
 
         updateDisplay();
     }
@@ -222,64 +240,71 @@ public class ExtraInfoActivity extends AppCompatActivity
         });
     }
 
+    private void addCompany(final boolean first) {
+        LayoutInflater inflaterPopupComp = (LayoutInflater) ExtraInfoActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View viewCompany = inflaterPopupComp.inflate(R.layout.activity_popup_company,
+                (ViewGroup) findViewById(R.id.popup_element));
+        popupCompany = new PopupWindow(viewCompany, screenWidth / 4 * 3, screenHeight / 4 * 3);
+        popupCompany.showAtLocation(viewCompany, Gravity.CENTER, 0, 0);
+        popupCompany.setFocusable(true);
+        popupCompany.update();
+
+//        EditText editTextSearchComp = (EditText) viewCompany.findViewById(R.id.comp_name);
+//        String inputCompany = editTextSearchComp.getText().toString();
+        ArrayList<String> arrayListCompanies = new ArrayList<>();
+        Button buttonSearchComp = (Button) viewCompany.findViewById(R.id.button_search_comp);
+        buttonSearchComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                inputCompany 값을 대학디비에서 찾는다
+//                찾은 결과들은 arrayListCompanies에 저장
+            }
+        });
+        // 일단 테스트를 위해 Apple로 지정
+        arrayListCompanies.add("Apple");
+        ListView listView = (ListView) viewCompany.findViewById(R.id.list_company);
+        ArrayAdapter<String> adapterCompany = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_single_choice);
+        listView.setAdapter(adapterCompany);
+        for (int i = 0; i < arrayListCompanies.size(); i++) {
+            adapterCompany.add(arrayListCompanies.get(i));
+        }
+        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedCompany = parent.getItemAtPosition(position).toString();
+                Log.d("TAG", selectedCompany);
+            }
+        });
+        Button buttonSaveComp = (Button) viewCompany.findViewById(R.id.button_save_comp);
+        buttonSaveComp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (first)
+                    tvSelectedComp.setText(selectedCompany);
+                else
+                    tvSelectedCompExp.setText(selectedCompany);
+                popupCompany.dismiss();
+            }
+        });
+        Button buttonCloseCompPopup = (Button) viewCompany.findViewById(R.id.button_cancel_comp);
+        buttonCloseCompPopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupCompany.dismiss();
+            }
+        });
+    }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.input_company:
-                LayoutInflater inflaterPopupComp = (LayoutInflater) ExtraInfoActivity.this
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View viewCompany = inflaterPopupComp.inflate(R.layout.activity_popup_company,
-                        (ViewGroup) findViewById(R.id.popup_element));
-                popupCompany = new PopupWindow(viewCompany, screenWidth / 4 * 3, screenHeight / 4 * 3);
-                popupCompany.showAtLocation(viewCompany, Gravity.CENTER, 0, 0);
-                popupCompany.setFocusable(true);
-                popupCompany.update();
-
-//                EditText editTextSearchComp = (EditText) viewCompany.findViewById(R.id.comp_name);
-//                String inputCompany = editTextSearchComp.getText().toString();
-                ArrayList<String> arrayListCompanies = new ArrayList<>();
-                Button buttonSearchComp = (Button) viewCompany.findViewById(R.id.button_search_comp);
-                buttonSearchComp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // inputCompany 값을 대학디비에서 찾는다
-                        // 찾은 결과들은 arrayListCompanies에 저장
-                    }
-                });
-                // 일단 테스트를 위해 Apple로 지정
-                arrayListCompanies.add("Apple");
-                final ListView listView = (ListView) viewCompany.findViewById(R.id.list_company);
-                final ArrayAdapter<String> adapterCompany = new ArrayAdapter<>(this,
-                        android.R.layout.simple_list_item_single_choice);
-                listView.setAdapter(adapterCompany);
-                for (int i = 0; i < arrayListCompanies.size(); i++) {
-                    adapterCompany.add(arrayListCompanies.get(i));
-                }
-                listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        selectedCompany = parent.getItemAtPosition(position).toString();
-                        Log.d("TAG", selectedCompany);
-                    }
-                });
-                Button buttonSaveComp = (Button) viewCompany.findViewById(R.id.button_save_comp);
-                buttonSaveComp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tvSelectedComp.setText(selectedCompany);
-                        popupCompany.dismiss();
-                    }
-                });
-                Button buttonCloseCompPopup = (Button) viewCompany.findViewById(R.id.button_cancel_comp);
-                buttonCloseCompPopup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupCompany.dismiss();
-                    }
-                });
+                addCompany(true);
                 break;
             case R.id.uni_extra_input:
                 LayoutInflater inflaterUni = (LayoutInflater) ExtraInfoActivity.this
@@ -367,6 +392,9 @@ public class ExtraInfoActivity extends AppCompatActivity
             case R.id.text_birthday:
 //                showDialog(DATE_DIALOG_ID);
                 showDatePickerDialog();
+                break;
+            case R.id.input_company_exp:
+                addCompany(false);
                 break;
             case R.id.certif_input:
                 addFirstCertificate();
