@@ -152,7 +152,7 @@ public class TabFragment_Favs extends ListFragment {
         String item_wishComp = item.getWish_comp();
 
         // declare items in popup
-        TextView seeMore_num = (TextView) seeMore.findViewById(R.id.ranking_num);
+        //TextView seeMore_num = (TextView) seeMore.findViewById(R.id.ranking_num);
         TextView seeMore_id = (TextView) seeMore.findViewById(R.id.rankings_id);
         TextView seeMore_major = (TextView) seeMore.findViewById(R.id.rankings_major);
         TextView seeMore_wishduty = (TextView) seeMore.findViewById(R.id.rankings_wish_duty);
@@ -166,7 +166,7 @@ public class TabFragment_Favs extends ListFragment {
         TextView seeMore_isEmp = (TextView) seeMore.findViewById(R.id.rankings_isEmp);
 
         // set textView with actual data text
-        seeMore_num.setText(Integer.toString(position+1));
+        //seeMore_num.setText(Integer.toString(position+1));
         seeMore_id.setText(item_id);
         seeMore_major.setText(item_major);
         seeMore_wishduty.setText(item_wishduty);
