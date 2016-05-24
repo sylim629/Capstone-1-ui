@@ -70,6 +70,13 @@ public class TabFragment_Home extends ListFragment{
             String dutyInfo = new String("직무 : ");
             String certifiInfo = new String("자격증 : ");
             String toeicInfo = new String("토익 :  ");
+            String ageInfo = new String("나이 : ");
+            String wishCompTypeInfo = new String("희망 회사 종류: ");
+            String wishCompInfo = new String("희망 회사: ");
+            String genderInfo = new String("성별: ");
+            String uniInfo = new String("대학: ");
+            String empInfo = new String("취업여부: ");
+            //---------------
 
             idInfo += tokens[i];
             majorInfo += tokens[i+3];
@@ -77,7 +84,14 @@ public class TabFragment_Home extends ListFragment{
             certifiInfo += tokens[i+9];
             toeicInfo += tokens[i+1];
             certifiInfo = certifiInfo.replace("|",",");
-            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j]));  // 여기서 isFav도 같이 저장해서 넘김
+            ageInfo += tokens[i+2];
+            wishCompTypeInfo += tokens[i+4];
+            wishCompInfo += tokens[i+6];
+            genderInfo += tokens[i+7];
+            uniInfo += tokens[i+8];
+            empInfo += tokens[i+10];
+
+            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j], ageInfo, wishCompTypeInfo, wishCompInfo, genderInfo, uniInfo, empInfo));  // 여기서 isFav도 같이 저장해서 넘김
         }
 
         // initialize and set the list adapter
@@ -127,7 +141,12 @@ public class TabFragment_Home extends ListFragment{
         String item_wishduty = item.getWish_duty();
         String item_certificates = item.getCertificates();
         String item_toeicScore = item.getToeicScore();
-
+        String item_age = item.getAge();
+        String item_gender = item.getGender();
+        String item_uni = item.getUni();
+        String item_isEmp = item.getIsEmp();
+        String item_wishCompType = item.getWish_comp_type();
+        String item_wishComp = item.getWish_comp();
 
         // declare items in popup
         TextView seeMore_num = (TextView) seeMore.findViewById(R.id.ranking_num);
@@ -136,6 +155,12 @@ public class TabFragment_Home extends ListFragment{
         TextView seeMore_wishduty = (TextView) seeMore.findViewById(R.id.rankings_wish_duty);
         TextView seeMore_certificates = (TextView) seeMore.findViewById(R.id.rankings_certificates);
         TextView seeMore_toeicScore = (TextView) seeMore.findViewById(R.id.rankings_toeicScore);
+        TextView seeMore_age = (TextView) seeMore.findViewById(R.id.rankings_age);
+        TextView seeMore_gender = (TextView) seeMore.findViewById(R.id.rankings_gender);
+        TextView seeMore_uni = (TextView) seeMore.findViewById(R.id.rankings_uni);
+        TextView seeMore_wishCompType = (TextView) seeMore.findViewById(R.id.rankings_wish_comp_type);
+        TextView seeMore_wishComp = (TextView) seeMore.findViewById(R.id.rankings_wish_comp);
+        TextView seeMore_isEmp = (TextView) seeMore.findViewById(R.id.rankings_isEmp);
 
         // set textView with actual data text
         seeMore_num.setText(Integer.toString(position+1));
@@ -144,5 +169,11 @@ public class TabFragment_Home extends ListFragment{
         seeMore_wishduty.setText(item_wishduty);
         seeMore_certificates.setText(item_certificates);
         seeMore_toeicScore.setText(item_toeicScore);
+        seeMore_age.setText(item_age);
+        seeMore_gender.setText(item_gender);
+        seeMore_uni.setText(item_uni);
+        seeMore_wishCompType.setText(item_wishCompType);
+        seeMore_wishComp.setText(item_wishComp);
+        seeMore_isEmp.setText(item_isEmp);
     }
 }
