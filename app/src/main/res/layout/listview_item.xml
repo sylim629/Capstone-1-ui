@@ -48,7 +48,7 @@
                 android:textColor="@android:color/white"
                 android:text="전공: "/>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/heart_white"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"

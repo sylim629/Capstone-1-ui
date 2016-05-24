@@ -24,4 +24,24 @@ public class ListViewItem {
     public String getId() {
         return id;
     }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public String getWish_duty() {
+        return wish_duty;
+    }
+
+    public String getCertificates() {
+        return certificates;
+    }
+
+    public String getToeicScore() {
+        return toeicScore;
+    }
+
+    public boolean isFav() {
+        return isFav;
+    }
 }

@@ -47,13 +47,15 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
             viewHolder.wish_duty = (TextView) convertView.findViewById(R.id.rankings_wish_duty);
             viewHolder.certificates = (TextView) convertView.findViewById(R.id.rankings_certificates);
             viewHolder.toeicScore = (TextView) convertView.findViewById(R.id.rankings_toeicScore);
-            viewHolder.fav = (ImageButton) convertView.findViewById(R.id.heart_white);
+            viewHolder.fav = (ImageView) convertView.findViewById(R.id.heart_white);
 
             convertView.setTag(viewHolder);
         } else {
             // recycle the already inflated view
             viewHolder = (ViewHolder) convertView.getTag();
         }
+
+
 
         // update the item view
         final ListViewItem item = getItem(position);
@@ -104,6 +106,6 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
      */
     private static class ViewHolder {
         TextView ranking, id, major, wish_duty, certificates, toeicScore;
-        ImageButton fav;
+        ImageView fav;
     }
 }

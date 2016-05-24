@@ -1,14 +1,23 @@
 package com.example.leanne.capstonedesign_1_;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Chloe on 4/13/2016.
@@ -17,6 +26,10 @@ import java.util.concurrent.ExecutionException;
 public class TabFragment_Home extends ListFragment{
 
     private List<ListViewItem> mItems;        // ListView items list
+    private PopupWindow seeMorePopup;
+    DisplayMetrics displaymetrics = new DisplayMetrics();
+    int screenWidth, screenHeight;
+    private String rankingResult;   // 여기에 서버에서 스트링 받기
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +39,7 @@ public class TabFragment_Home extends ListFragment{
         mItems = new ArrayList<>();
 
         // 테스트 하기 위해 그냥 만든 임의의 String
-        String rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
+        rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp";
         int topN=0;
         String[] tokens = rankingResult.split(";");
         for(int i = 0 ; i < tokens.length ; i++){
@@ -69,6 +82,11 @@ public class TabFragment_Home extends ListFragment{
 
         // initialize and set the list adapter
         setListAdapter(new ListViewDemoAdaptor(getActivity(), mItems));
+
+
+        ((Activity)getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        screenHeight = displaymetrics.heightPixels;
+        screenWidth = displaymetrics.widthPixels;
     }
 
     @Override
@@ -80,10 +98,51 @@ public class TabFragment_Home extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        // retrieve theListView item
-        ListViewItem item = mItems.get(position);
+        super.onListItemClick(l, v, position, id);
 
-        // do something
-        Toast.makeText(getActivity(), item.id, Toast.LENGTH_SHORT).show();
+        //Log.d("item position", Integer.toString(position)); // test code
+
+        LayoutInflater inflaterPopupComp = (LayoutInflater) getActivity()
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View seeMore = inflaterPopupComp.inflate(R.layout.activity_popup_seemore,
+                (ViewGroup) getActivity().findViewById(R.id.popup_element));
+        seeMorePopup = new PopupWindow(seeMore, screenWidth / 4 * 3, screenHeight / 4 * 3);
+        seeMorePopup.showAtLocation(seeMore, Gravity.CENTER, 0, 0);
+        seeMorePopup.setFocusable(true);
+        seeMorePopup.update();
+
+        Button btnDismiss = (Button) seeMore.findViewById(R.id.dismiss);
+        btnDismiss.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                seeMorePopup.dismiss();
+            }
+        });
+
+        // get actual data from clicked item
+        ListViewItem item = mItems.get(position);
+        String item_id = item.getId();
+        String item_major = item.getMajor();
+        String item_wishduty = item.getWish_duty();
+        String item_certificates = item.getCertificates();
+        String item_toeicScore = item.getToeicScore();
+
+
+        // declare items in popup
+        TextView seeMore_num = (TextView) seeMore.findViewById(R.id.ranking_num);
+        TextView seeMore_id = (TextView) seeMore.findViewById(R.id.rankings_id);
+        TextView seeMore_major = (TextView) seeMore.findViewById(R.id.rankings_major);
+        TextView seeMore_wishduty = (TextView) seeMore.findViewById(R.id.rankings_wish_duty);
+        TextView seeMore_certificates = (TextView) seeMore.findViewById(R.id.rankings_certificates);
+        TextView seeMore_toeicScore = (TextView) seeMore.findViewById(R.id.rankings_toeicScore);
+
+        // set textView with actual data text
+        seeMore_num.setText(Integer.toString(position+1));
+        seeMore_id.setText(item_id);
+        seeMore_major.setText(item_major);
+        seeMore_wishduty.setText(item_wishduty);
+        seeMore_certificates.setText(item_certificates);
+        seeMore_toeicScore.setText(item_toeicScore);
     }
 }
