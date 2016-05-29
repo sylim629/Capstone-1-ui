@@ -83,10 +83,6 @@ public class EditMyInfoActivity extends AppCompatActivity
         isMaleClicked = false;
         isFemaleClicked = false;
 
-        ////////////////////////////////////////////////////////////////////////////////////////////
-        // SET 성별
-        // if gender = female
-
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
@@ -132,6 +128,16 @@ public class EditMyInfoActivity extends AppCompatActivity
                 android.R.layout.simple_spinner_item);
         adapterWorkExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWorkExp.setAdapter(adapterWorkExp);
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // INITIALIZE USER INFO
+        //////////////////////////////////////////////////////////////////////////////////////////
+        TextView userName = (TextView) findViewById(R.id.text_user_name);
+        userName.setText(LoggedInUser.getInstance().getUserName());
+        TextView userID = (TextView) findViewById(R.id.text_user_id);
+        userID.setText(LoggedInUser.getInstance().getId());
+        textViewUniSearch.setText(LoggedInUser.getInstance().getUniv());
+        spinnerMajor.setPrompt(LoggedInUser.getInstance().getMajor());
 
         updateDisplay();
     }
