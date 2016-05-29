@@ -18,9 +18,10 @@ public class ListViewItem {
     private final String gender;
     private final String uni;
     private final String isEmp;
+    private final String gpa;
 
 
-    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav, String age, String wish_comp_type, String wish_comp, String gender, String uni, String isEmp) {
+    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav, String age, String wish_comp_type, String wish_comp, String gender, String uni, String isEmp, String gpa) {
         this.id = id;
         this.major = major;
         this.wish_duty = wish_duty;
@@ -34,6 +35,7 @@ public class ListViewItem {
         this.gender = gender;
         this.uni = uni;
         this.isEmp = isEmp;
+        this.gpa = gpa;
     }
 
     public String getId() {
@@ -86,5 +88,9 @@ public class ListViewItem {
 
     public String getIsEmp() {
         return isEmp;
+    }
+
+    public String getGpa() {
+        return gpa;
     }
 }
