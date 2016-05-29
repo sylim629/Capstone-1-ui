@@ -57,7 +57,10 @@ public class ExtraInfoActivity extends AppCompatActivity
     String selectedUni;
     private PopupWindow popupWindowCert;
     TextView textViewAddCert;
+    ArrayList<String> arrayListCerts;
     ArrayList<String> selectedCertList;
+    ArrayList<TextView> newCertTextViews;
+    boolean isAlreadyExists;    // in selectedCertList
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,19 @@ public class ExtraInfoActivity extends AppCompatActivity
         tvSelectedCompExp.setOnClickListener(this);
         textViewAddCert = (TextView) findViewById(R.id.certif_input);
         textViewAddCert.setOnClickListener(this);
+
+        arrayListCerts = new ArrayList<>();
+        selectedCertList = new ArrayList<>();
+        newCertTextViews = new ArrayList<>();
+
+        // 자격증 DB의 자격증들을 arrayListCerts에 불러온다!!!!
+        // temp
+        arrayListCerts.add("정보처리기사");
+        arrayListCerts.add("정보보안기사");
+        arrayListCerts.add("정보보안산업기사");
+        arrayListCerts.add("정보시스템감사사");
+        arrayListCerts.add("정보처리산업기사");
+        // end of temp
 
         Spinner spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
         ArrayAdapter adapterMajor = ArrayAdapter.createFromResource(this, R.array.majors,
@@ -158,19 +174,15 @@ public class ExtraInfoActivity extends AppCompatActivity
         popupWindowCert.setFocusable(true);
         popupWindowCert.update();
 
-//        EditText editTextSearchCert = (EditText) layoutCert.findViewById(R.id.cert_name);
+//        EditText editTextSearchCert = (EditText) popupLayout.findViewById(R.id.cert_name);
 //        String inputCert = editTextSearchCert.getText().toString();
-        ArrayList<String> arrayListCerts = new ArrayList<>();
         Button buttonSearchCert = (Button) popupLayout.findViewById(R.id.button_search_cert);
         buttonSearchCert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // inputCert 값을 자격증디비에서 찾는다
-                // 찾은 결과들은 arrayListCerts에 저장
+                // inputCert의 값과 유사한 결과를 arrayListCerts에서 찾아서 display!!!
             }
         });
-        // 일단 테스트를 위해 정보처리기사로 지정
-        arrayListCerts.add("정보처리기사");
         final ListView listCerts = (ListView) popupLayout.findViewById(R.id.list_cert);
         final ArrayAdapter<String> adapterCert = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_single_choice);
@@ -180,14 +192,14 @@ public class ExtraInfoActivity extends AppCompatActivity
         }
         listCerts.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        selectedCertList = new ArrayList<>();
+//        selectedCertList = new ArrayList<>();
         selectedCertList.add("");
         listCerts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectedCertList.set(selectedCertList.size() - 1, parent.getItemAtPosition(position).toString());
+                selectedCertList.set(0, parent.getItemAtPosition(position).toString());
 //                selectedCert = parent.getItemAtPosition(position).toString();
-                Log.d("TAG", selectedCertList.get(selectedCertList.size() - 1));
+                Log.d("TAG", selectedCertList.get(0));
             }
         });
 
@@ -197,7 +209,7 @@ public class ExtraInfoActivity extends AppCompatActivity
             @TargetApi(Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                if (Objects.equals(selectedCertList.get(selectedCertList.size() - 1), "")) {
+                if (Objects.equals(selectedCertList.get(0), "")) {
                     Toast.makeText(popupLayout.getContext(), "자격증을 입력해 주세요", Toast.LENGTH_SHORT).show();
                 } else {
                     RelativeLayout baseLayout = (RelativeLayout) findViewById(R.id.layout_main);
@@ -215,6 +227,13 @@ public class ExtraInfoActivity extends AppCompatActivity
                     newInputText.setPadding(30, 20, 20, 20);
                     newInputText.setHintTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
                     newInputText.setTextSize(20.f);
+                    newInputText.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            addSecondCertificate();
+                        }
+                    });
+                    newCertTextViews.add(newInputText);
                     baseLayout.addView(newInputText, params);
 
                     LinearLayout layoutBottom = (LinearLayout) findViewById(R.id.layout_bottom);
@@ -224,7 +243,7 @@ public class ExtraInfoActivity extends AppCompatActivity
                     paramsBottom.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
                     layoutBottom.setLayoutParams(paramsBottom);
 
-                    textViewAddCert.setText(selectedCertList.get(selectedCertList.size() - 1));
+                    textViewAddCert.setText(selectedCertList.get(0));
                     popupWindowCert.dismiss();
                 }
             }
@@ -234,7 +253,108 @@ public class ExtraInfoActivity extends AppCompatActivity
         buttonCloseCertPopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedCertList.set(selectedCertList.size() - 1, "");
+                textViewAddCert.setText("-추가-");
+                selectedCertList.set(0, "");
+                popupWindowCert.dismiss();
+            }
+        });
+    }
+
+    private void addSecondCertificate() {
+        LayoutInflater inflater = (LayoutInflater) ExtraInfoActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View popupLayout = inflater.inflate(R.layout.activity_popup_certificate,
+                (ViewGroup) findViewById(R.id.popup_element));
+        popupWindowCert = new PopupWindow(popupLayout, screenWidth / 4 * 3, screenHeight / 4 * 3);
+        popupWindowCert.showAtLocation(popupLayout, Gravity.CENTER, 0, 0);
+        popupWindowCert.setFocusable(true);
+        popupWindowCert.update();
+
+//        String inputCert = editTextSearchCert.getText().toString();
+        Button buttonSearchCert = (Button) popupLayout.findViewById(R.id.button_search_cert);
+        buttonSearchCert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // inputCert의 값과 유사한 결과를 arrayListCerts에서 찾아서 display!!!
+            }
+        });
+        final ListView listCerts = (ListView) popupLayout.findViewById(R.id.list_cert);
+        final ArrayAdapter<String> adapterCert = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_single_choice);
+        listCerts.setAdapter(adapterCert);
+        for (int i = 0; i < arrayListCerts.size(); i++) {
+            adapterCert.add(arrayListCerts.get(i));
+        }
+        listCerts.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        selectedCertList.add("");
+        isAlreadyExists = false;
+        listCerts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < selectedCertList.size(); i++) {
+                    if (Objects.equals(selectedCertList.get(i), parent.getItemAtPosition(position).toString())) {
+                        Toast.makeText(popupLayout.getContext(), "이미 추가 하셨습니다. 다시 시도해 주십시오.", Toast.LENGTH_SHORT).show();
+                        isAlreadyExists = true;
+                    }
+//                    else {
+//                        selectedCertList.set(1, parent.getItemAtPosition(position).toString());
+//                        Log.d("TAG", selectedCertList.get(1));
+//                    }
+                }
+                if (!isAlreadyExists) {
+                    selectedCertList.set(1, parent.getItemAtPosition(position).toString());
+                    Log.d("TAG", selectedCertList.get(1));
+                }
+            }
+        });
+
+        Button buttonSaveCert = (Button) popupLayout.findViewById(R.id.button_save_cert);
+        buttonSaveCert.setOnClickListener(new View.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                if (Objects.equals(selectedCertList.get(1), "")) {
+                    Toast.makeText(popupLayout.getContext(), "자격증을 입력해 주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    RelativeLayout baseLayout = (RelativeLayout) findViewById(R.id.layout_main);
+                    TextView newInputText = new TextView(ExtraInfoActivity.this);
+                    newInputText.setWidth(textViewAddCert.getWidth());
+                    newInputText.setHeight(textViewAddCert.getHeight());
+                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    params.addRule((RelativeLayout.ALIGN_PARENT_RIGHT));
+                    params.addRule(RelativeLayout.BELOW, newCertTextViews.get(0).getId());
+                    params.setMargins(0, 0, 0, 100);
+                    newInputText.setBackgroundColor(Color.WHITE);
+                    newInputText.setClickable(true);
+                    newInputText.setHint(R.string.add);
+                    newInputText.setPadding(30, 20, 20, 20);
+                    newInputText.setHintTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
+                    newInputText.setTextSize(20.f);
+                    newCertTextViews.add(newInputText);
+                    baseLayout.addView(newInputText, params);
+
+                    LinearLayout layoutBottom = (LinearLayout) findViewById(R.id.layout_bottom);
+                    RelativeLayout.LayoutParams paramsBottom = new RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    paramsBottom.addRule(RelativeLayout.BELOW, newInputText.getId());
+                    paramsBottom.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+                    layoutBottom.setLayoutParams(paramsBottom);
+
+                    newCertTextViews.get(0).setText(selectedCertList.get(1));
+                    popupWindowCert.dismiss();
+                }
+            }
+        });
+
+        Button buttonCloseCertPopup = (Button) popupLayout.findViewById(R.id.button_cancel_cert);
+        buttonCloseCertPopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newCertTextViews.get(0).setText("-추가-");
+                selectedCertList.set(1, "");
                 popupWindowCert.dismiss();
             }
         });
