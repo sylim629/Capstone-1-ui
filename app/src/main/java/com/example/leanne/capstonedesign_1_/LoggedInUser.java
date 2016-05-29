@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Created by dalaetm on 2016-04-08.
+ * 지금 현재 로그인 한 유저의 정보
  */
 public class LoggedInUser extends Application {
     private String id;
@@ -21,7 +22,11 @@ public class LoggedInUser extends Application {
     private boolean gender;
     private String univ;
     private String certifi;
+    private double gpa;
+    private double maxGPA;    // 4.0 or 4.5
+    private String workExp;    // 예: 인턴/근무:기관명:개월
     private boolean isEmp;
+    private boolean isMember;
 
     private String search_major;
     private String search_com_type;
@@ -33,7 +38,7 @@ public class LoggedInUser extends Application {
 
     private ArrayList<String> fav_ids;      //일단 이 맴버변수는 필요하다!
 
-    public LoggedInUser(){
+    public LoggedInUser() {
         id = null;
         user_name = null;
         passWd = null;
@@ -46,7 +51,11 @@ public class LoggedInUser extends Application {
         gender = false;
         univ = null;
         certifi = null;
+        gpa = 0.0;
+        maxGPA = 4.5;
+        workExp = null;
         isEmp = false;
+        isMember = true;
 
         search_major = null;
         search_com_type = null;
@@ -56,141 +65,210 @@ public class LoggedInUser extends Application {
         search_univ = null;
         search_age = 0;
 
-        fav_ids = new ArrayList<String>();      //일단 이 맴버변수는 필요하다!
+        fav_ids = new ArrayList<>();      //일단 이 맴버변수는 필요하다!
         fav_ids.add("iammeee");
         fav_ids.add("gotrules");
     }
 
 
-    public String getId(){
+    public String getId() {
         return id;
     }
-    public String getUserName(){
+
+    public String getUserName() {
         return user_name;
     }
-    public String getPassWd(){
+
+    public String getPassWd() {
         return passWd;
     }
-    public int getToeic(){
+
+    public int getToeic() {
         return toeic;
     }
-    public int getAge(){
+
+    public int getAge() {
         return age;
     }
-    public String getMajor(){
+
+    public String getMajor() {
         return major;
     }
-    public String getCom_type(){
+
+    public String getCom_type() {
         return com_type;
     }
-    public String getDuty(){
+
+    public String getDuty() {
         return duty;
     }
-    public String getCom_name(){
+
+    public String getCom_name() {
         return com_name;
     }
-    public boolean getGender(){
+
+    public boolean getGender() {
         return gender;
     }
-    public String getUniv(){
+
+    public String getUniv() {
         return univ;
     }
-    public String getCertifi(){
+
+    public String getCertifi() {
         return certifi;
     }
-    public boolean getIsEmp(){
+
+    public double getGPA() {
+        return gpa;
+    }
+
+    public double getMaxGPA() {
+        return maxGPA;
+    }
+
+    public String getWorkExp() {
+        return workExp;
+    }
+
+    public boolean getIsEmp() {
         return isEmp;
     }
-    public String getSearch_Major(){
+
+    public boolean getIsMember() {
+        return isMember;
+    }
+
+    public String getSearch_Major() {
         return search_major;
     }
-    public String getSearch_Com_type(){
+
+    public String getSearch_Com_type() {
         return search_com_type;
     }
-    public String getSearch_Duty(){
+
+    public String getSearch_Duty() {
         return search_duty;
     }
-    public String getSearch_Com_name(){
+
+    public String getSearch_Com_name() {
         return search_com_name;
     }
-    public boolean getSearch_Gender(){
+
+    public boolean getSearch_Gender() {
         return search_gender;
     }
-    public String getSearch_Univ(){
+
+    public String getSearch_Univ() {
         return search_univ;
     }
-    public int getSearch_Age(){
+
+    public int getSearch_Age() {
         return search_age;
     }
-    public ArrayList<String> getFav_ids(){
+
+    public ArrayList<String> getFav_ids() {
         return fav_ids;
     }
 
 
-
-    public void setId(String input){
+    public void setId(String input) {
         id = input;
     }
-    public void setUserName(String input){
+
+    public void setUserName(String input) {
         user_name = input;
     }
-    public void setPassWd(String input){
+
+    public void setPassWd(String input) {
         passWd = input;
     }
-    public void setToeic(int input){
+
+    public void setToeic(int input) {
         toeic = input;
     }
-    public void setAge(int input){
+
+    public void setAge(int input) {
         age = input;
     }
-    public void setMajor(String input){
+
+    public void setMajor(String input) {
         major = input;
     }
-    public void setCom_type(String input){
+
+    public void setCom_type(String input) {
         com_type = input;
     }
-    public void setDuty(String input){
+
+    public void setDuty(String input) {
         duty = input;
     }
-    public void setCom_name(String input){
+
+    public void setCom_name(String input) {
         com_name = input;
     }
-    public void setGender(boolean input){
+
+    public void setGender(boolean input) {
         gender = input;
     }
-    public void setUniv(String input){
+
+    public void setUniv(String input) {
         univ = input;
     }
-    public void setCertifi(String input){
+
+    public void setCertifi(String input) {
         certifi = input;
     }
-    public void setIsEmp(boolean input){
+
+    public void setGPA(double input) {
+        gpa = input;
+    }
+
+    public void setMaxGPA(double input) {
+        maxGPA = input;
+    }
+
+    public void setWorkExp(String input) {
+        workExp = input;
+    }
+
+    public void setIsEmp(boolean input) {
         isEmp = input;
     }
-    public void setSearch_age(int input){
+
+    public void setSearch_age(int input) {
         search_age = input;
     }
-    public void setSearch_major(String input){
+
+    public void setSearch_major(String input) {
         search_major = input;
     }
-    public void setSearch_com_type(String input){
+
+    public void setSearch_com_type(String input) {
         search_com_type = input;
     }
-    public void setSearch_duty(String input){
+
+    public void setSearch_duty(String input) {
         search_duty = input;
     }
-    public void setSearch_com_name(String input){
+
+    public void setSearch_com_name(String input) {
         search_com_name = input;
     }
-    public void setSearch_gender(boolean input){
+
+    public void setSearch_gender(boolean input) {
         search_gender = input;
     }
-    public void setSearch_univ(String input){
+
+    public void setSearch_univ(String input) {
         search_univ = input;
     }
 
     private static LoggedInUser loggedinUser = new LoggedInUser();
-    public static LoggedInUser getInstance() { return loggedinUser; }
+
+    public static LoggedInUser getInstance() {
+        return loggedinUser;
+    }
 
     // 그냥 다 setFav_ids로 하면 안되나?? 이것도 내가 놓친게 있는지ㅠㅠ?
     /* adds new id to FavId ArrayList *//*
@@ -198,7 +276,7 @@ public class LoggedInUser extends Application {
 
     }*/
 
-    public void setFav_ids(String input){
+    public void setFav_ids(String input) {
         fav_ids.add(input);   //Fav아이디들을 arrayList에 저장
     }
 

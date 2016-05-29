@@ -48,6 +48,15 @@ public class ExtraInfoActivity extends AppCompatActivity
     private int year, month, day;
     private TextView textViewBirthday;
 
+    EditText inputGPA;
+    EditText inputExpMonths;
+
+    Spinner spinnerMajor;
+    Spinner spinnerGPA;
+    Spinner spinnerCompType;
+    Spinner spinnerCompDuty;
+    Spinner spinnerWorkExp;
+
     private PopupWindow popupCompany;
     TextView tvSelectedComp;
     TextView tvSelectedCompExp;
@@ -82,6 +91,9 @@ public class ExtraInfoActivity extends AppCompatActivity
         isMaleClicked = false;
         isFemaleClicked = false;
 
+        inputGPA = (EditText) findViewById(R.id.input_gpa);
+        inputExpMonths = (EditText) findViewById(R.id.comp_exp_months);
+
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
@@ -111,31 +123,31 @@ public class ExtraInfoActivity extends AppCompatActivity
         arrayListCerts.add("정보처리산업기사");
         // end of temp
 
-        Spinner spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
+        spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
         ArrayAdapter adapterMajor = ArrayAdapter.createFromResource(this, R.array.majors,
                 android.R.layout.simple_spinner_item);
         adapterMajor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMajor.setAdapter(adapterMajor);
 
-        Spinner spinnerGPA = (Spinner) findViewById(R.id.spinner_gpamax);
+        spinnerGPA = (Spinner) findViewById(R.id.spinner_gpamax);
         ArrayAdapter adapterGPA = ArrayAdapter.createFromResource(this, R.array.max_gpa,
                 android.R.layout.simple_spinner_item);
         adapterGPA.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGPA.setAdapter(adapterGPA);
 
-        Spinner spinnerCompType = (Spinner) findViewById(R.id.spinner_company_type);
+        spinnerCompType = (Spinner) findViewById(R.id.spinner_company_type);
         ArrayAdapter adapterCompType = ArrayAdapter.createFromResource(this, R.array.company_types,
                 android.R.layout.simple_spinner_item);
         adapterCompType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCompType.setAdapter(adapterCompType);
 
-        Spinner spinnerCompDuty = (Spinner) findViewById(R.id.spinner_company_duty);
+        spinnerCompDuty = (Spinner) findViewById(R.id.spinner_company_duty);
         ArrayAdapter adapterCompDuty = ArrayAdapter.createFromResource(this, R.array.company_duties,
                 android.R.layout.simple_spinner_item);
         adapterCompDuty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCompDuty.setAdapter(adapterCompDuty);
 
-        Spinner spinnerWorkExp = (Spinner) findViewById(R.id.spinner_workexp_type);
+        spinnerWorkExp = (Spinner) findViewById(R.id.spinner_workexp_type);
         ArrayAdapter adapterWorkExp = ArrayAdapter.createFromResource(this, R.array.work_exp,
                 android.R.layout.simple_spinner_item);
         adapterWorkExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -522,9 +534,6 @@ public class ExtraInfoActivity extends AppCompatActivity
                 addFirstCertificate();
                 break;
             case R.id.button_skip:
-
-                // 디비에 null로 저장
-
                 Intent intentHome = new Intent(this, HomeActivity.class);
                 startActivity(intentHome);
                 this.overridePendingTransition(R.anim.animation_enter_right2left,
@@ -534,22 +543,92 @@ public class ExtraInfoActivity extends AppCompatActivity
             case R.id.button_save:
                 EditText editTextToeic = (EditText) findViewById(R.id.editText_toeic);
                 String stringScore = editTextToeic.getText().toString();
+                int toeicScore = 0;
                 if (!Objects.equals(stringScore, "")) {
-                    int toeicScore = Integer.parseInt(stringScore);
+                    toeicScore = Integer.parseInt(stringScore);
                     if (toeicScore < 0 || toeicScore > 990) {
                         Toast.makeText(this, "올바른 토익점수를 입력해주세요.", Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
 
-//                boolean gender = false;
-//
-//                if (isFemaleClicked)
-//                    gender = true;
-//                if (isMaleClicked)
-//                    gender = false;
+                Calendar calendar = Calendar.getInstance();
+                int age = calendar.get(Calendar.YEAR) - year;
 
-                // SAVE "추가정보" to db
+                if (Objects.equals(textViewUniSearch.getText().toString(), "")
+                        || Objects.equals(spinnerMajor.getSelectedItem().toString(), "-선택-")
+                        || Objects.equals(inputGPA.getText().toString(), "")
+                        || Objects.equals(spinnerGPA.getSelectedItem().toString(), "-선택-")
+                        || Objects.equals(spinnerCompType.getSelectedItem().toString(), "-선택-")
+                        || Objects.equals(spinnerCompDuty.getSelectedItem().toString(), "-선택-")
+                        || Objects.equals(tvSelectedComp.getText().toString(), "")
+                        || (!isMaleClicked && !isFemaleClicked)
+                        || age == 0 || Objects.equals(spinnerWorkExp.getSelectedItem().toString(), "-선택-")
+                        || Objects.equals(tvSelectedCompExp.getText().toString(), "")) {
+                    Toast.makeText(this, "입력하지 않은 부분이 있습니다.", Toast.LENGTH_LONG).show();
+                    break;
+                }
+
+                LoggedInUser.getInstance().setAge(age);
+                Log.d("TAG", "" + LoggedInUser.getInstance().getAge());
+                String certificates = "";
+                for (int i = 0; i < selectedCertList.size(); i++) {
+                    certificates = certificates.concat("|").concat(selectedCertList.get(i));
+                }
+                certificates = certificates.concat("|");
+                LoggedInUser.getInstance().setCertifi(certificates);
+                Log.d("TAG", "" + LoggedInUser.getInstance().getCertifi());
+                LoggedInUser.getInstance().setCom_name(tvSelectedComp.getText().toString());
+                Log.d("TAG", "" + LoggedInUser.getInstance().getCom_name());
+                LoggedInUser.getInstance().setCom_type(spinnerCompType.getSelectedItem().toString());
+                Log.d("TAG", "" + LoggedInUser.getInstance().getCom_type());
+                LoggedInUser.getInstance().setDuty(spinnerCompDuty.getSelectedItem().toString());
+                Log.d("TAG", "" + LoggedInUser.getInstance().getDuty());
+                boolean gender = false;
+                if (isFemaleClicked)
+                    gender = true;
+                if (isMaleClicked)
+                    gender = false;
+                LoggedInUser.getInstance().setGender(gender);
+                Log.d("TAG", "" + LoggedInUser.getInstance().getGender());
+                LoggedInUser.getInstance().setGPA(Double.parseDouble(inputGPA.getText().toString()));
+                Log.d("TAG", "" + LoggedInUser.getInstance().getGPA());
+                LoggedInUser.getInstance().setMajor(spinnerMajor.getSelectedItem().toString());
+                Log.d("TAG", "" + LoggedInUser.getInstance().getMajor());
+                LoggedInUser.getInstance().setMaxGPA(Double.parseDouble(spinnerGPA.getSelectedItem().toString()));
+                Log.d("TAG", "" + LoggedInUser.getInstance().getMaxGPA());
+                LoggedInUser.getInstance().setToeic(toeicScore);
+                Log.d("TAG", "" + LoggedInUser.getInstance().getToeic());
+                LoggedInUser.getInstance().setUniv(textViewUniSearch.getText().toString());
+                Log.d("TAG", "" + LoggedInUser.getInstance().getUniv());
+                String workExp = "";
+                if (Objects.equals(spinnerWorkExp.getSelectedItem().toString(), "없음"))
+                    LoggedInUser.getInstance().setWorkExp(null);
+                else {
+                    workExp = workExp.concat(spinnerWorkExp.getSelectedItem().toString()).concat(":")
+                            .concat(tvSelectedCompExp.getText().toString()).concat(":")
+                            .concat(inputExpMonths.getText().toString());
+                    LoggedInUser.getInstance().setWorkExp(workExp);
+                }
+                Log.d("TAG", "" + LoggedInUser.getInstance().getWorkExp());
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // RequestMsgSender updateMsgSender = (RequestMsgSender) new RequestMsgSender()
+                //      .execute("4;" + LoggedInUser.getInstance().getUniv() + ";" + LoggedInUser.getInstance().getMajor()
+                //      + ";" + LoggedInUser.getInstance().getCom_type() + ";" + LoggedInUser.getInstance().getDuty()
+                //      + ";" + LoggedInUser.getInstance().getCom_name() + ";" + LoggedInUser.getInstance().getGender()
+                //      + ";" + LoggedInUser.getInstance().getAge() + ";" + LoggedInUser.getInstance().getToeic()
+                //      + ";" + LoggedInUser.getInstance().getCertifi() + ";" + LoggedInUser.getInstance().getGPA()
+                //      + ";" + LoggedInUser.getInstance().getMaxGPA() + ";" + LoggedInUser.getInstance().getWorkExp());
+                //////////////////////////////////////////////////////////////////////////
+                // String updateResult = null;
+                // try {
+                //      updateResult = updateMsgSender.get();
+                // } catch (InterruptedException e) {
+                //      e.printStackTrace();
+                // } catch (ExecutionException e) {
+                //      e.printStackTrace();
+                // }
+                ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 Toast.makeText(getApplicationContext(), "추가정보 입력 완료", Toast.LENGTH_LONG).show();
                 Intent intentHome2 = new Intent(this, HomeActivity.class);

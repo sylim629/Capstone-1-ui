@@ -83,6 +83,10 @@ public class EditMyInfoActivity extends AppCompatActivity
         isMaleClicked = false;
         isFemaleClicked = false;
 
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // SET 성별
+        // if gender = female
+
         final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
