@@ -51,10 +51,10 @@ public class ExtraInfoActivity extends AppCompatActivity
     private PopupWindow popupCompany;
     TextView tvSelectedComp;
     TextView tvSelectedCompExp;
-    static String selectedCompany;
+    String selectedCompany;
     private PopupWindow popupWindowUni;
     TextView textViewUniSearch;
-    static String selectedUni;
+    String selectedUni;
     private PopupWindow popupWindowCert;
     TextView textViewAddCert;
     ArrayList<String> selectedCertList;
@@ -287,6 +287,7 @@ public class ExtraInfoActivity extends AppCompatActivity
                     tvSelectedComp.setText(selectedCompany);
                 else
                     tvSelectedCompExp.setText(selectedCompany);
+                selectedCompany = "";
                 popupCompany.dismiss();
             }
         });
@@ -294,6 +295,7 @@ public class ExtraInfoActivity extends AppCompatActivity
         buttonCloseCompPopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedCompany = "";
                 popupCompany.dismiss();
             }
         });
