@@ -154,6 +154,7 @@ public class ExtraInfoActivity extends AppCompatActivity
         spinnerWorkExp.setAdapter(adapterWorkExp);
 
         updateDisplay();
+
     }
 
     // attach to an onclick handler to show the date picker
