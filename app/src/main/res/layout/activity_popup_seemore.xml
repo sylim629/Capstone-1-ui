@@ -164,6 +164,18 @@
                     android:text="toeic score"/>
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView android:id="@+id/rankings_career"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textAppearance="@android:style/TextAppearance.Small"
+                    android:text="career"/>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/dismiss"
                 android:layout_width="wrap_content"
