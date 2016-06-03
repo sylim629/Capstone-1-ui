@@ -84,7 +84,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     updateFavs = "7;add;" + cutId;
 
                     //-------------------------
-                    RequestMsgSender favsMsgSender = (RequestMsgSender) new RequestMsgSender().execute(updateFavs);
+                    /*RequestMsgSender favsMsgSender = (RequestMsgSender) new RequestMsgSender().execute(updateFavs);
                     String favAddResult = null;
                     try {
                         favAddResult = favsMsgSender.get();
@@ -98,7 +98,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     }
                     else {
                         Toast.makeText(getContext(), "성공", Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                     //-------------------------
                 } else {   // 빨간 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 뜨면 무시..
@@ -108,7 +108,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     String cutId = item.getId().substring(5);
                     deleteFavs = "7;del;" + cutId;
                     //-------------------------
-                    RequestMsgSender favsMsgSender = (RequestMsgSender) new RequestMsgSender().execute(deleteFavs);
+                    /*RequestMsgSender favsMsgSender = (RequestMsgSender) new RequestMsgSender().execute(deleteFavs);
                     String favDelResult = null;
                     try {
                         favDelResult = favsMsgSender.get();
@@ -122,8 +122,8 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     }
                     else {
                         Toast.makeText(getContext(), "성공", Toast.LENGTH_SHORT).show();
-                    }
-                    //-------------------------*/
+                    }*/
+                    //-------------------------
                 }
             }
         });
