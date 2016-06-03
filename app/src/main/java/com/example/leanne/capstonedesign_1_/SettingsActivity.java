@@ -5,24 +5,25 @@ import android.os.Bundle;
 
 /**
  * Created by Chloe on 4/13/2016.
+ * 환경설정 페이지. 비어있음.
  */
 public class SettingsActivity extends Activity {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_settings);
 
-        initView();
-    }
+		initView();
+	}
 
-    private void initView() {
+	private void initView() {
 
-    }
+	}
 
-    @Override
-    public void onBackPressed() {
-        this.finish();
-        overridePendingTransition(R.anim.animation_enter_left2right, R.anim.animation_leave_left2right);
-    }
+	@Override
+	public void onBackPressed() {
+		this.finish();
+		overridePendingTransition(R.anim.animation_enter_left2right, R.anim.animation_leave_left2right);
+	}
 }

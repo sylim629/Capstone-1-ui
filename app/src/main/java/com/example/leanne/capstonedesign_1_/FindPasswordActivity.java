@@ -5,16 +5,17 @@ import android.os.Bundle;
 
 /**
  * Created by imsuyeon on 16. 4. 4..
+ * 아직 아무것도 구현이 안됨..ㅋ
  */
 public class FindPasswordActivity extends Activity {
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pw);
-    }
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_find_pw);
+	}
 
-    @Override
-    public void onBackPressed() {
-        this.finish();
-        overridePendingTransition(R.anim.animation_enter_left2right, R.anim.animation_leave_left2right);
-    }
+	@Override
+	public void onBackPressed() {
+		this.finish();
+		overridePendingTransition(R.anim.animation_enter_left2right, R.anim.animation_leave_left2right);
+	}
 }

@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="입력해보세요!"
             android:textColor="@android:color/white"
-            android:textSize="30dp"
+            android:textSize="30sp"
             />
 
         <LinearLayout
@@ -85,18 +85,18 @@
             android:buttonTint="@android:color/white"
             android:text="다시보지 않기"
             android:textColor="@android:color/white"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
 
         <Button
             android:id="@+id/lure_close_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="center"
             android:background="@android:color/white"
             android:text="닫기"
             android:textColor="@color/mint"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
     </LinearLayout>
 </LinearLayout>

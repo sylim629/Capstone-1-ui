@@ -137,7 +137,6 @@ public class EditMyInfoActivity extends AppCompatActivity
         TextView userID = (TextView) findViewById(R.id.text_user_id);
         userID.setText(LoggedInUser.getInstance().getId());
         textViewUniSearch.setText(LoggedInUser.getInstance().getUniv());
-        spinnerMajor.setPrompt(LoggedInUser.getInstance().getMajor());
 
         updateDisplay();
     }
