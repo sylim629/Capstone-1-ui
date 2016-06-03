@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 /**
  * Created by imsuyeon on 16. 4. 4..
+ * 회원가입 페이지
  */
 public class RegisterActivity extends Activity implements View.OnClickListener {
     private EditText editTextId, editTextPassword, editTextConfirmPassword, editTextName;
-    private Button buttonRegister, buttonCheckID;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +32,9 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         editTextPassword = (EditText) findViewById(R.id.editText_pw);
         editTextConfirmPassword = (EditText) findViewById(R.id.editText_pw_confirm);
 
-        buttonRegister = (Button) findViewById(R.id.button_register);
+        Button buttonRegister = (Button) findViewById(R.id.button_register);
         buttonRegister.setOnClickListener(this);
-        buttonCheckID = (Button) findViewById(R.id.button_check_id);
+        Button buttonCheckID = (Button) findViewById(R.id.button_check_id);
         buttonCheckID.setOnClickListener(this);
 
         /* focus change - detect invalid characters */
@@ -48,7 +48,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     strToCheck = editTextName.getText().toString();
                     checkResult = checkString(strToCheck);
                     // if there is invalid character in string
-                    if(checkResult == true) {
+                    if(checkResult) {
                         showInvalidCharToast();
                         editTextName.setText("");
                     }
@@ -65,7 +65,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     strToCheck = editTextId.getText().toString();
                     checkResult = checkString(strToCheck);
                     // if there is invalid character in string
-                    if(checkResult == true) {
+                    if(checkResult) {
                         showInvalidCharToast();
                         editTextId.setText("");
                     }
@@ -82,7 +82,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     strToCheck = editTextPassword.getText().toString();
                     checkResult = checkString(strToCheck);
                     // if there is invalid character in string
-                    if(checkResult == true) {
+                    if(checkResult) {
                         showInvalidCharToast();
                         editTextPassword.setText("");
                     }
@@ -99,7 +99,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     strToCheck = editTextConfirmPassword.getText().toString();
                     checkResult = checkString(strToCheck);
                     // if there is invalid character in string
-                    if(checkResult == true) {
+                    if(checkResult) {
                         showInvalidCharToast();
                         editTextConfirmPassword.setText("");
                     }
@@ -114,6 +114,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             return true;
         }
         else return false;
+
     }
 
     /* shows toast message if string contains an invalid character */
@@ -155,9 +156,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                     if (!inputPW.equals(confirmPassword)) {
                         Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
                     } else {
-                        // SAVE USER INFO INTO DB
+                        LoggedInUser.getLoggedinUser().setUserName(inputName);
+                        LoggedInUser.getLoggedinUser().setId(inputID);
+                        LoggedInUser.getLoggedinUser().setPassWd(inputPW);
                         Toast.makeText(getApplicationContext(), "계정만들기 성공!", Toast.LENGTH_LONG).show();
-                        // this.finish();
                         Intent intentExtraInfo = new Intent(RegisterActivity.this, ExtraInfoActivity.class);
                         startActivity(intentExtraInfo);
                         overridePendingTransition(R.anim.animation_enter_right2left, R.anim.animation_leave_right2left);

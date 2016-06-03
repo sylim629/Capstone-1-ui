@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
-<<<<<<< HEAD
+<items version="2" >
 
-=======
->>>>>>> 8df4a77968c4375eb609362874d9f8bc72d48bd1
+    <item
+        jar="C:\Users\Chloe\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_deed4e8ac532837e30fe4041b0ece11c0278d9a4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_b41b82fa23eb6027d004d39d52348afe4f008093.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_ef2e423dc62dda55929b91c458a649eb82c4e327.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_fd03257fdbebfb0ba22022eb336d176ffa50a60f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_43bac9b64e15e7cc1d1e29a9fc7fa73ef071a111.jar" />
+    </item>
+    <item
+        jar="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Chloe\Documents\GitHub\Capstone-1-ui\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_36146826b02aed72ea52a772af4978890aec7179.jar" />
+    </item>
+
+</items>

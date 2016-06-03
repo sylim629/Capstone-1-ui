@@ -9,6 +9,7 @@
         <item>-선택-</item>
         <item>인턴</item>
         <item>근무</item>
+        <item>없음</item>
     </string-array>
     <string-array name="majors">
         <item>-선택-</item>

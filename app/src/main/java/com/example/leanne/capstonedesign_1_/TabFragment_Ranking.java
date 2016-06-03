@@ -2,12 +2,12 @@ package com.example.leanne.capstonedesign_1_;
 
 /**
  * Created by Chloe on 4/11/2016.
+ * 홈 화면. 랭킹 보여주는 탭 화면.
  */
+
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;

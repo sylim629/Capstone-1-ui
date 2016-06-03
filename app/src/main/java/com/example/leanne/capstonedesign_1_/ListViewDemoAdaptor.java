@@ -82,7 +82,6 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                     String cutId = item.getId().substring(5);
                     updateFavs = "7;add;" + cutId;
-
                     //-------------------------
                     /*RequestMsgSender favsMsgSender = (RequestMsgSender) new RequestMsgSender().execute(updateFavs);
                     String favAddResult = null;
@@ -117,13 +116,13 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     }
-                    if(favAddResult.equals(false)) {
+                    if(favDelResult.equals(false)) {
                         Toast.makeText(getContext(), "실패", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         Toast.makeText(getContext(), "성공", Toast.LENGTH_SHORT).show();
                     }*/
-                    //-------------------------
+                    //-------------------------*/
                 }
             }
         });

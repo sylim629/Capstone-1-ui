@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Created by Chloe on 5/11/2016.
+ *
  */
 public class RecommendActivity extends Activity {
 

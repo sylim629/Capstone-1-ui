@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/popup_element"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:background="@color/mint"
-android:padding="20px"
-android:orientation="vertical">
+              android:id="@+id/popup_element"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/mint"
+              android:orientation="vertical"
+              android:padding="20dp">
 
-<FrameLayout
-    android:id="@+id/lure_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="30dp">
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:padding="30dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="20dp"
             android:text="더 많은 전국 스펙\n비교가 궁금하시면..."
-            android:textSize="30dp"
             android:textColor="@android:color/white"
-            android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="20dp"
             android:text="○○기업에 합격한 사람의\n스펙이 궁금하다?"
-            android:textSize="20dp"
             android:textColor="@android:color/white"
-            android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="20dp"
             android:text="○○과인 다른 취준생들의\n스펙 수준이 궁금하다?"
-            android:textSize="20dp"
             android:textColor="@android:color/white"
-            android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:textSize="20sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="○○직무에 지원하는 다른\n경쟁자들의 스펙이 궁금하다?"
-            android:textSize="20dp"
-            android:textColor="@android:color/white"
+            android:gravity="center"
             android:paddingBottom="20dp"
-            android:gravity="center"/>
+            android:text="○○직무에 지원하는 다른\n경쟁자들의 스펙이 궁금하다?"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
 
-        <Button android:id="@+id/go_register_button"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/go_register_button"
             android:layout_width="match_parent"
-            android:drawablePadding="3sp"
-            android:layout_centerHorizontal="true"
-            android:text="회원가입"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:background="@android:color/white"
+            android:drawablePadding="3sp"
+            android:text="회원가입"
             android:textColor="@color/mint"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/already_member"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:gravity="center"
             android:clickable="true"
+            android:gravity="center"
             android:text="이미 회원입니다"
             android:textColor="@android:color/white"
-            android:textSize="15dp" />
+            android:textSize="15sp"/>
     </LinearLayout>
-</FrameLayout>
 </LinearLayout>

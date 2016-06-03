@@ -14,7 +14,7 @@
         android:clickable="true"
         android:text="회원가입"
         android:textColor="@android:color/white"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:paddingBottom="10dp"/>
 
     <EditText

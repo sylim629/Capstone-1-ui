@@ -6,12 +6,10 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -25,7 +23,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Chloe on 4/13/2016.
  * 홈화면 랭킹 페이지. 랭킹 탭
  */
-public class TabFragment_Home extends ListFragment{
+public class TabFragment_Home extends ListFragment {
 
     private List<ListViewItem> mItems;        // ListView items list
     private PopupWindow seeMorePopup;
@@ -61,31 +59,31 @@ public class TabFragment_Home extends ListFragment{
                 "qwerty101;875;24;컴퓨터공학부;외국계기업;응용프로그래머;한국IBM;false;이화여자대학교;정보처리기사|정보보안기사;0;3.9;4.5;|인턴:네이버(구 NHN):2|;" +
                 "gotrules;800;26;컴퓨터공학부;공기업;시스템프로그래머;한국산업은행;false;인하대학교;정보처리기사;0;3.8;4.0;|인턴:삼성디스플레이:2|;" +
                 "bigbangtheory;795;25;컴퓨터공학부;사기업;응용프로그래머;LG전자;false;홍익대학교;정보처리기사;0;3.53;4.5;|인턴:신한카드:2|;";
-        int topN=0;
+        int topN = 0;
         String[] tokens = rankingResult.split(";");
-        for(int i = 0 ; i < tokens.length ; i++){
-            if(tokens[i].equals("!")) tokens[i]="";
+        for (int i = 0; i < tokens.length; i++) {
+            if (tokens[i].equals("!")) tokens[i] = "";
         }
         topN = Integer.parseInt(tokens[0]);
-        int j=0;
+        int j = 0;
         ArrayList<String> idFavs = new ArrayList<String>();
 
         idFavs = LoggedInUser.getLoggedinUser().getFav_ids();
 
         boolean[] isFavArray = new boolean[topN];
-        int k=0;
-        for(int i=1; k<topN; i+=14, k++) {
+        int k = 0;
+        for (int i = 1; k < topN; i += 14, k++) {
             String id = tokens[i];
-            for(int l=0; l<idFavs.size(); l++) {
+            for (int l = 0; l < idFavs.size(); l++) {
                 if (id.equals(idFavs.get(l))) {    // LoggedInUser의 Fav ID와 비교해서 일치하면 isFav = true. 아니면 false
                     isFavArray[k] = true;
                     break;
-                }else
+                } else
                     isFavArray[k] = false;
             }
         }
 
-        for(int i = 1 ; j < topN ; i+=14, j++ ){
+        for (int i = 1; j < topN; i += 14, j++) {
             String idInfo = new String("ID : ");
             String majorInfo = new String("전공 : ");
             String dutyInfo = new String("직무 : ");
@@ -102,42 +100,42 @@ public class TabFragment_Home extends ListFragment{
             //---------------
 
             idInfo += tokens[i];
-            majorInfo += tokens[i+3];
-            dutyInfo += tokens[i+5];
-            certifiInfo += tokens[i+9];
-            toeicInfo += tokens[i+1];
-            certifiInfo = certifiInfo.replace("|",",");
-            ageInfo += tokens[i+2];
-            wishCompTypeInfo += tokens[i+4];
-            wishCompInfo += tokens[i+6];
-            genderInfo += tokens[i+7];
-            uniInfo += tokens[i+8];
-            empInfo += tokens[i+10];
-            gpaInfo += (tokens[i+11] + "/" + tokens[i+12]);
-            careerInfo += alterCareer(tokens[i+13]);
+            majorInfo += tokens[i + 3];
+            dutyInfo += tokens[i + 5];
+            certifiInfo += tokens[i + 9];
+            toeicInfo += tokens[i + 1];
+            certifiInfo = certifiInfo.replace("|", ",");
+            ageInfo += tokens[i + 2];
+            wishCompTypeInfo += tokens[i + 4];
+            wishCompInfo += tokens[i + 6];
+            genderInfo += tokens[i + 7];
+            uniInfo += tokens[i + 8];
+            empInfo += tokens[i + 10];
+            gpaInfo += (tokens[i + 11] + "/" + tokens[i + 12]);
+            careerInfo += alterCareer(tokens[i + 13]);
 
-            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j], ageInfo, wishCompTypeInfo, wishCompInfo, genderInfo, uniInfo, empInfo, gpaInfo, careerInfo));  // 여기서 isFav도 같이 저장해서 넘김
+            mItems.add(new ListViewItem(idInfo, majorInfo, dutyInfo, certifiInfo, toeicInfo, isFavArray[j], ageInfo, wishCompTypeInfo, wishCompInfo, genderInfo, uniInfo, empInfo, gpaInfo, careerInfo));  // 여기서 isFav도 같이 저장해서 넘김
         }
 
         // initialize and set the list adapter
         setListAdapter(new ListViewDemoAdaptor(getActivity(), mItems));
 
 
-        ((Activity)getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
     }
 
-    public String alterCareer(String input){
-        if(input.equals("!")) {
+    public String alterCareer(String input) {
+        if (input.equals("!")) {
             return "";
         }
         String result = "";
-        if( input != null ){
-            input = input.substring(1, input.length()-1);
-            String[] tokens = input.split(":",0);
-            for(int j = 0 ; j < tokens.length ; j++ ){
-                result += (tokens[j] + " " );
+        if (input != null) {
+            input = input.substring(1, input.length() - 1);
+            String[] tokens = input.split(":", 0);
+            for (int j = 0; j < tokens.length; j++) {
+                result += (tokens[j] + " ");
             }
         }
         result = result + "개월";

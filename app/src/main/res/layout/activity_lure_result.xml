@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/popup_element"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/mint"
-    android:padding="20px"
-    android:orientation="vertical">
+              android:id="@+id/popup_element"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/mint"
+              android:orientation="vertical"
+              android:padding="20dp">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="30dp">
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:padding="30dp">
 
         <TextView
             android:id="@+id/result_text_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="당신의 전국"
-            android:textSize="30dp"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/result_text_line2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             android:text="퍼센티지 결과!"
-            android:textSize="30dp"
             android:textColor="@android:color/white"
-            android:paddingBottom="20dp"/>
+            android:textSize="30sp"/>
 
         <TextView
             android:id="@+id/result_text_toeic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="57dp"
-            android:textColor="@android:color/white"
             android:paddingBottom="20dp"
-            android:text=""/>
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="57sp"/>
 
-        <Button android:id="@+id/go_next_button"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/go_next_button"
             android:layout_width="match_parent"
-            android:drawablePadding="3sp"
-            android:layout_centerHorizontal="true"
-            android:text="다음"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@android:color/white"
+            android:drawablePadding="3sp"
+            android:text="다음"
             android:textColor="@color/mint"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
     </LinearLayout>
 </LinearLayout>

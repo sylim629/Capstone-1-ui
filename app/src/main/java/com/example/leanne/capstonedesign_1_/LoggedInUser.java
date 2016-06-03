@@ -272,9 +272,9 @@ public class LoggedInUser extends Application {
         }
     }
 
-    /* deletes id from FavId ArrayList */
-    public void deleteFav_id(String deleteFavId) {
-        fav_ids.remove(deleteFavId);
-    }
+	/* deletes id from FavId ArrayList */
+	public void deleteFav_id(String deleteFavId) {
+		fav_ids.remove(deleteFavId);
+	}
 
 }

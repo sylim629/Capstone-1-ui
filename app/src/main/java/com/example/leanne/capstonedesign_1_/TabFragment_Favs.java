@@ -2,12 +2,12 @@ package com.example.leanne.capstonedesign_1_;
 
 /**
  * Created by Chloe on 4/11/2016.
+ * 찜목록 탭 화면
  */
+
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,11 @@ public class TabFragment_Favs extends ListFragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }*/
-        rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;3.9;4.5;|인턴:기관1:1개월|;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;3.5;4.5;|인턴:기관2:2개월|;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;3.85;4.5;|인턴:기관3:3개월|;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;3.25;4.0;|인턴:기관4:4개월|;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp;4.23;4.5;|인턴:기관5:5개월|";
+        rankingResult = "5;kwjel88;990;29;컴퓨터공학부;사기업;통신∙모바일;삼성전자;false;서울대학교;정보처리기사;0;4.12;4.5;|인턴:SKT:2|;" +
+                "iammeee;980;27;컴퓨터공학부;공기업;데이터베이스 DBA;인천국제공항공사;true;서강대학교;정보처리기사;0;4.3;4.5;|인턴:KT:2|;" +
+                "qwerty101;875;24;컴퓨터공학부;외국계기업;응용프로그래머;한국IBM;false;이화여자대학교;정보처리기사|정보보안기사;0;3.9;4.5;|인턴:네이버(구 NHN):2|;" +
+                "gotrules;800;26;컴퓨터공학부;공기업;시스템프로그래머;한국산업은행;false;인하대학교;정보처리기사;0;3.8;4.0;|인턴:삼성디스플레이:2|;" +
+                "bigbangtheory;795;25;컴퓨터공학부;사기업;응용프로그래머;LG전자;false;홍익대학교;정보처리기사;0;3.53;4.5;|인턴:신한카드:2|;";
         //-----------------
         int topN=0;
         String[] tokens = rankingResult.split(";");

@@ -101,4 +101,5 @@ public class ListViewItem {
     public String getCareer() {
         return career;
     }
+
 }
