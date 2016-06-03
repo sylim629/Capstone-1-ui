@@ -54,6 +54,14 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(this, "아이디 혹은 비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     break;
                 }
+
+                // 특수문자 예외처리
+                if(id.contains(";") || id.contains(":") || id.contains("\\") || id.contains("|") || pw.contains(";") || pw.contains(":") || pw.contains("\\") || pw.contains("|")) {
+                    Toast.makeText(this, ";,:,\\,| 입력은 불가능합니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                // end 특수문자 예외처리
+
                 if (id.equals(dbID) && pw.equals(dbPW)) {
                     Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intentHome = new Intent(this, HomeActivity.class);

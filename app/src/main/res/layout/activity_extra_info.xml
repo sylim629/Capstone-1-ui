@@ -246,7 +246,7 @@
             android:layout_below="@id/sex_extra"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:text="@string/birthday"
+            android:text="나이"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
 

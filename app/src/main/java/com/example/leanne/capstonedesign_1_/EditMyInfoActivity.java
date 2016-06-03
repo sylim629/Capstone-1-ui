@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -36,7 +38,7 @@ import java.util.Objects;
  * 개인정보 수정 탭 화면
  */
 public class EditMyInfoActivity extends AppCompatActivity
-        implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+        implements View.OnClickListener {
     DisplayMetrics displaymetrics = new DisplayMetrics();
     int screenWidth, screenHeight;
     private Button buttonMale;
@@ -45,19 +47,22 @@ public class EditMyInfoActivity extends AppCompatActivity
 
     private int year, month, day;
     private TextView textViewBirthday;
-
+    private EditText editTextGPA;
+    private EditText editTextToeic;
+    private EditText tvCompExpMonths;
     private PopupWindow popupCompany;
-    TextView tvSelectedComp;
-    TextView tvSelectedCompExp;
-    String selectedCompany;
+    private TextView tvSelectedComp;
+    private TextView tvSelectedCompExp;
+    private String selectedCompany;
     private PopupWindow popupWindowUni;
-    TextView textViewUniSearch;
-    String selectedUni;
+    private TextView textViewUniSearch;
+    private TextView textViewCompSearch;
+    private String selectedUni;
     private PopupWindow popupWindowCert;
-    TextView textViewAddCert;
-    ArrayList<String> arrayListCerts;
-    ArrayList<String> selectedCertList;
-    ArrayList<TextView> newCertTextViews;
+    private TextView textViewAddCert;
+    private ArrayList<String> arrayListCerts;
+    private ArrayList<String> selectedCertList;
+    private ArrayList<TextView> newCertTextViews;
     boolean isAlreadyExists;    // in selectedCertList
 
     @Override
@@ -83,21 +88,26 @@ public class EditMyInfoActivity extends AppCompatActivity
         isMaleClicked = false;
         isFemaleClicked = false;
 
-        final Calendar c = Calendar.getInstance();
+  /*      final Calendar c = Calendar.getInstance();
         year = c.get(Calendar.YEAR);
         month = c.get(Calendar.MONTH);
-        day = c.get(Calendar.DAY_OF_MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);*/
 
         textViewBirthday = (TextView) findViewById(R.id.text_birthday);
-        textViewBirthday.setOnClickListener(this);
+
         tvSelectedComp = (TextView) findViewById(R.id.input_company);
         tvSelectedComp.setOnClickListener(this);
         textViewUniSearch = (TextView) findViewById(R.id.uni_extra_input);
         textViewUniSearch.setOnClickListener(this);
+        textViewCompSearch = (TextView) findViewById(R.id.text_company);
         tvSelectedCompExp = (TextView) findViewById(R.id.input_company_exp);
+        tvCompExpMonths = (EditText) findViewById(R.id.comp_exp_months);
         tvSelectedCompExp.setOnClickListener(this);
         textViewAddCert = (TextView) findViewById(R.id.certif_input);
         textViewAddCert.setOnClickListener(this);
+        editTextGPA = (EditText) findViewById(R.id.edit_text_gpa);
+        editTextToeic = (EditText) findViewById(R.id.editText_toeic);
+
 
         Spinner spinnerMajor = (Spinner) findViewById(R.id.spinner_major);
         ArrayAdapter adapterMajor = ArrayAdapter.createFromResource(this, R.array.majors,
@@ -129,27 +139,76 @@ public class EditMyInfoActivity extends AppCompatActivity
         adapterWorkExp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerWorkExp.setAdapter(adapterWorkExp);
 
-        updateDisplay();
-    }
-
-    // attach to an onclick handler to show the date picker
-    public void showDatePickerDialog() {
-        DatePickerFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
-    // handle the date selected
-    @Override
-    public void onDateSet(DatePicker view, int setYear, int setMonth, int setDay) {
-        year = setYear;
-        month = setMonth;
-        day = setDay;
-        updateDisplay();
-    }
-
-    private void updateDisplay() {
-        this.textViewBirthday.setText(
-                new StringBuilder().append(year).append(".").append(month + 1).append(".").append(day));
+        //////////////////////////////////////////////////////////////////////////////////////////
+        // INITIALIZE USER INFO
+        //////////////////////////////////////////////////////////////////////////////////////////
+        String getStr;
+        TextView userName = (TextView) findViewById(R.id.text_user_name);
+        userName.setText(LoggedInUser.getLoggedinUser().getUserName());
+        TextView userID = (TextView) findViewById(R.id.text_user_id);
+        userID.setText(LoggedInUser.getLoggedinUser().getId());
+        // set uni textview
+        getStr = LoggedInUser.getLoggedinUser().getUniv();
+        if(!getStr.equals(""))
+            textViewUniSearch.setText(LoggedInUser.getLoggedinUser().getUniv());
+        // set major spinner
+        getStr = LoggedInUser.getLoggedinUser().getMajor();
+        if(!getStr.equals(""))
+            spinnerMajor.setSelection(adapterMajor.getPosition(getStr));
+        // set gpa
+        getStr = LoggedInUser.getLoggedinUser().getGPA()+"";
+        if(!getStr.equals(""))
+            editTextGPA.setText(getStr);
+        // set max gpa
+        getStr = LoggedInUser.getLoggedinUser().getMaxGPA()+"";
+        if(!getStr.equals(""))
+            spinnerGPA.setSelection(adapterGPA.getPosition(getStr));
+        // set wish comp type
+        getStr = LoggedInUser.getLoggedinUser().getCom_type();
+        if(!getStr.equals(""))
+            spinnerCompType.setSelection(adapterCompType.getPosition(getStr));
+        // set wish duty
+        getStr = LoggedInUser.getLoggedinUser().getDuty();
+        if(!getStr.equals(""))
+            spinnerCompDuty.setSelection(adapterCompDuty.getPosition(getStr));
+        // set wish comp name
+        getStr = LoggedInUser.getLoggedinUser().getCom_name();
+        if(!getStr.equals(""))
+            tvSelectedComp.setText(getStr);
+        // set gender
+        getStr = LoggedInUser.getLoggedinUser().getGender()+"";
+        if(!getStr.equals("")){
+            if(getStr.equals("false")) { // 남자면
+                buttonMale.setBackgroundResource(R.drawable.button_border_after);
+                buttonMale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
+            }else{  // 여자면
+                buttonFemale.setBackgroundResource(R.drawable.button_border_after);
+                buttonFemale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.mint));
+            }
+        }
+        // set age
+        getStr = LoggedInUser.getLoggedinUser().getAge()+"";
+        if(!getStr.equals(""))
+            textViewBirthday.setText(getStr);
+        // set career
+        getStr = LoggedInUser.getLoggedinUser().getCareer();
+        if(!getStr.equals("")) {
+            getStr = getStr.substring(1, getStr.length()-1);
+            String[] tokens = getStr.split(":",0);
+            spinnerWorkExp.setSelection(adapterWorkExp.getPosition(tokens[0]));
+            tvSelectedCompExp.setText(tokens[1]);
+            tvCompExpMonths.setText(tokens[2]);
+        }
+        // set toeic
+        getStr = LoggedInUser.getLoggedinUser().getToeic()+"";
+        if(!getStr.equals("")) {
+            editTextToeic.setText(getStr);
+        }
+        // set certifications
+        getStr = LoggedInUser.getLoggedinUser().getCertifi();
+        if(!getStr.equals("")) {
+            textViewAddCert.setText(getStr);
+        }
     }
 
     private void addFirstCertificate() {
@@ -169,12 +228,15 @@ public class EditMyInfoActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 // inputCert의 값과 유사한 결과를 arrayListCerts에서 찾아서 display!!!
+
+
+
             }
         });
         final ListView listCerts = (ListView) popupLayout.findViewById(R.id.list_cert);
         final ArrayAdapter<String> adapterCert = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_single_choice);
-        listCerts.setAdapter(adapterCert);
+        listCerts.setAdapter(adapterCert);                  ////////////////////////////////// ERROR ////////////////////////
         for (int i = 0; i < arrayListCerts.size(); i++) {
             adapterCert.add(arrayListCerts.get(i));
         }
@@ -497,10 +559,6 @@ public class EditMyInfoActivity extends AppCompatActivity
                     buttonMale.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.light_gray));
                     isMaleClicked = false;
                 }
-                break;
-            case R.id.text_birthday:
-//                showDialog(DATE_DIALOG_ID);
-                showDatePickerDialog();
                 break;
             case R.id.input_company_exp:
                 addCompany(false);

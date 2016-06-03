@@ -78,7 +78,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                 if (item.getIsFav() == false) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
                     item.setIsFav(true);
-                    LoggedInUser.getInstance().setFav_ids(item.getId().substring(5));   // 앞에 있는 "ID : " 빼고 나머지 아이디 부분만 저장
+                    LoggedInUser.getLoggedinUser().setFav_ids(item.getId().substring(5));   // 앞에 있는 "ID : " 빼고 나머지 아이디 부분만 저장
                     Toast.makeText(getContext(), "clicked white heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                     String cutId = item.getId().substring(5);
                     updateFavs = "7;add;" + cutId;
@@ -103,7 +103,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
                 } else {   // 빨간 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));  // 빨간 줄 뜨면 무시..
                     item.setIsFav(false);
-                    LoggedInUser.getInstance().deleteFav_id(item.getId().substring(5));    // 앞에 있는 "ID : " 뺸 아이디 부분 찾아서 삭제
+                    LoggedInUser.getLoggedinUser().deleteFav_id(item.getId().substring(5));    // 앞에 있는 "ID : " 뺸 아이디 부분 찾아서 삭제
                     Toast.makeText(getContext(), "clicked red heart:" + item.getId() + "!", Toast.LENGTH_SHORT).show();
                     String cutId = item.getId().substring(5);
                     deleteFavs = "7;del;" + cutId;

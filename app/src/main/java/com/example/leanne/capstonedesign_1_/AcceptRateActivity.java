@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * Created by Chloe on 5/10/2016.
  */
@@ -20,9 +22,23 @@ public class AcceptRateActivity extends Activity {
 
     private void initView() {
         TextView acceptRate = (TextView)findViewById(R.id.accept_rate);
-        // 합격 가능성 % 값 받기
-        acceptRate.setText("80%");  // 그냥 테스트값
+
+        //------------------
+        // 합격 가능성 값 받기
+        String acceptRateResult = null;
+        /*RequestMsgSender acceptRateMsgSender = (RequestMsgSender) new RequestMsgSender().execute("13;");
+        String acceptRateResult = null;
+        try {
+            acceptRateResult = acceptRateMsgSender.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        acceptRate.setText(acceptRateResult);*/
+        //------------
     }
+
 
     @Override
     public void onBackPressed() {

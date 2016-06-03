@@ -110,12 +110,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
     /* checks to see if given string contains an invalid character --> ;, :, \, | */
     private boolean checkString(String str) {
-        CharSequence cs1 = ";";
-        CharSequence cs2 = ":";
-        CharSequence cs3 = "\\";
-        CharSequence cs4 = "|";
-
-        if(str.contains(cs1) | str.contains(cs2) | str.contains(cs3) | str.contains(cs4)) {
+        if(str.contains(";") | str.contains(":") | str.contains("\\") | str.contains("|")) {
             return true;
         }
         else return false;
@@ -124,7 +119,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     /* shows toast message if string contains an invalid character */
     private void showInvalidCharToast () {
         Context context = getApplicationContext();
-        CharSequence text = ":, ;, \\, | 는 입력하실 수 없습니다.";
+        CharSequence text = ":, ;, \\, |는 입력하실 수 없습니다.";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
@@ -142,6 +137,16 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 String inputPW = editTextPassword.getText().toString();
                 String confirmPassword = editTextConfirmPassword.getText().toString();
                 String inputName = editTextName.getText().toString();
+
+                // 특수문자 예외처리
+                if(inputID.contains(";") || inputID.contains(":") || inputID.contains("\\") || inputID.contains("|") ||
+                        inputPW.contains(";") || inputPW.contains(":") || inputPW.contains("\\") || inputPW.contains("|") ||
+                        confirmPassword.contains(";") || confirmPassword.contains(":") || confirmPassword.contains("\\") || confirmPassword.contains("|") ||
+                        inputName.contains(";") || inputName.contains(":") || inputName.contains("\\") || inputName.contains("|") ) {
+                    Toast.makeText(this, ";,:,\\,| 입력은 불가능합니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                // end 특수문자 예외처리
 
                 if (inputID.equals("") || inputPW.equals("") || confirmPassword.equals("")
                         || inputName.equals("")) {

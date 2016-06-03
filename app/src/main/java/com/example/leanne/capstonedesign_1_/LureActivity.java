@@ -55,10 +55,16 @@ public class LureActivity extends Activity implements View.OnClickListener {
         switch(v.getId()){
             case R.id.result_button:
                 String stringScore = lureScore.getText ().toString();
-                if(stringScore.equals(""))
+                // 특수문자 예외처리
+                if(stringScore.contains(";") || stringScore.contains(":") || stringScore.contains("\\") || stringScore.contains("|")) {
+                    Toast.makeText(this, ";,:,\\,| 입력은 불가능합니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                // end 특수문자 예외처리
+                if(stringScore.equals("")) {
                     Toast.makeText(this, "점수를 입력해주시오.", Toast.LENGTH_SHORT).show();
-                else
-                {
+                    break;
+                } else {
                     int toeicScore = Integer.parseInt(stringScore);
                     boolean scoreValidate = false;
                     if (toeicScore >= 0 && toeicScore <= 990) {

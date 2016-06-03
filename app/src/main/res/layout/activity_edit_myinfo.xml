@@ -50,7 +50,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/name_temp"
+                android:text="null"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
@@ -74,7 +74,7 @@
                 android:layout_below="@id/name_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/limlean590"
+                android:text="null"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 
@@ -151,6 +151,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/edit_text_gpa"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
@@ -301,7 +302,7 @@
                 android:layout_below="@id/sex_extra"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
-                android:text="@string/birthday"
+                android:text="나이"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 

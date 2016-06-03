@@ -39,7 +39,7 @@ import java.util.Objects;
  */
 public class ExtraInfoActivity extends AppCompatActivity
         implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
-    DisplayMetrics displaymetrics = new DisplayMetrics();
+    private DisplayMetrics displaymetrics = new DisplayMetrics();
     int screenWidth, screenHeight;
     private Button buttonMale;
     private Button buttonFemale;
@@ -49,18 +49,19 @@ public class ExtraInfoActivity extends AppCompatActivity
     private TextView textViewBirthday;
 
     private PopupWindow popupCompany;
-    TextView tvSelectedComp;
-    TextView tvSelectedCompExp;
-    String selectedCompany;
+    private TextView tvSelectedComp;
+    private TextView tvSelectedCompExp;
+    private String selectedCompany;
     private PopupWindow popupWindowUni;
-    TextView textViewUniSearch;
-    String selectedUni;
+    private TextView textViewUniSearch;
+    private String selectedUni;
     private PopupWindow popupWindowCert;
-    TextView textViewAddCert;
-    ArrayList<String> arrayListCerts;
-    ArrayList<String> selectedCertList;
-    ArrayList<TextView> newCertTextViews;
-    boolean isAlreadyExists;    // in selectedCertList
+    private TextView textViewAddCert;
+    private ArrayList<String> arrayListCerts;
+    private ArrayList<String> selectedCertList;
+    private ArrayList<TextView> newCertTextViews;
+    private boolean isAlreadyExists;    // in selectedCertList
+    private EditText editTextGPA, editTextToeic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -533,7 +534,19 @@ public class ExtraInfoActivity extends AppCompatActivity
                 this.finish();
                 break;
             case R.id.button_save:
-                EditText editTextToeic = (EditText) findViewById(R.id.editText_toeic);
+
+                /*// 특수문자 예외처리
+                String checkGPA = editTextGPA.getText().toString();
+                String checkToeic = editTextToeic.getText().toString();
+
+                if(checkGPA.contains(";") || checkGPA.contains(":") || checkGPA.contains("\\") || checkGPA.contains("|") ||
+                        checkToeic.contains(";") || checkToeic.contains(":") || checkToeic.contains("\\") || checkToeic.contains("|")) {
+                    Toast.makeText(this, ";,:,\\,| 입력은 불가능합니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                // end 특수문자 예외처리*/
+
+                editTextToeic = (EditText) findViewById(R.id.editText_toeic);
                 String stringScore = editTextToeic.getText().toString();
                 if (!Objects.equals(stringScore, "")) {
                     int toeicScore = Integer.parseInt(stringScore);
@@ -542,15 +555,6 @@ public class ExtraInfoActivity extends AppCompatActivity
                         break;
                     }
                 }
-
-//                boolean gender = false;
-//
-//                if (isFemaleClicked)
-//                    gender = true;
-//                if (isMaleClicked)
-//                    gender = false;
-
-                // SAVE "추가정보" to db
 
                 Toast.makeText(getApplicationContext(), "추가정보 입력 완료", Toast.LENGTH_LONG).show();
                 Intent intentHome2 = new Intent(this, HomeActivity.class);

@@ -1,5 +1,7 @@
 package com.example.leanne.capstonedesign_1_;
 
+import java.util.ArrayList;
+
 /**
  * Created by Chloe on 4/13/2016.
  * 랭킹 화면에 나타나는 각 아이템에 출력될 내용물들 정의 클래스
@@ -19,9 +21,10 @@ public class ListViewItem {
     private final String uni;
     private final String isEmp;
     private final String gpa;
+    private final String career;
 
 
-    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav, String age, String wish_comp_type, String wish_comp, String gender, String uni, String isEmp, String gpa) {
+    public ListViewItem(String id, String major, String wish_duty, String certificates, String toeicScore, boolean isFav, String age, String wish_comp_type, String wish_comp, String gender, String uni, String isEmp, String gpa, String career) {
         this.id = id;
         this.major = major;
         this.wish_duty = wish_duty;
@@ -36,6 +39,7 @@ public class ListViewItem {
         this.uni = uni;
         this.isEmp = isEmp;
         this.gpa = gpa;
+        this.career = career;
     }
 
     public String getId() {
@@ -92,5 +96,9 @@ public class ListViewItem {
 
     public String getGpa() {
         return gpa;
+    }
+
+    public String getCareer() {
+        return career;
     }
 }

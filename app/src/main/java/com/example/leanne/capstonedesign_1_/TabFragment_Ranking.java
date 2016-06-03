@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TabFragment_Ranking extends ListFragment {
 
@@ -35,11 +36,23 @@ public class TabFragment_Ranking extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //----------------
         // initialize the items list
-        mItems = new ArrayList<>();
+        mItems = new ArrayList<ListViewItem>();
+        /*Resources resources = getResources();
 
-        // 테스트 하기 위해 그냥 만든 임의의 String
-        rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;3.9;4.5;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;3.5;4.5;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;3.85;4.5;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;3.25;4.0;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp;4.23;4.5";
+        RequestMsgSender userInfoMsgSender = (RequestMsgSender) new RequestMsgSender().execute("9;");
+        String rankingResult = null;
+
+        try {
+            rankingResult = userInfoMsgSender.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }*/
+        rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;3.9;4.5;|인턴:기관1:1개월|;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;3.5;4.5;|인턴:기관2:2개월|;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;3.85;4.5;|인턴:기관3:3개월|;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;3.25;4.0;|인턴:기관4:4개월|;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp;4.23;4.5;|인턴:기관5:5개월|";
+        //-----------------
         int topN=0;
         String[] tokens = rankingResult.split(";");
         for(int i = 0 ; i < tokens.length ; i++){
@@ -49,11 +62,11 @@ public class TabFragment_Ranking extends ListFragment {
         int j=0;
         ArrayList<String> idFavs = new ArrayList<String>();
 
-        idFavs = LoggedInUser.getInstance().getFav_ids();
+        idFavs = LoggedInUser.getLoggedinUser().getFav_ids();
 
         boolean[] isFavArray = new boolean[topN];
         int k=0;
-        for(int i=1; k<topN; i+=13, k++) {
+        for(int i=1; k<topN; i+=14, k++) {
             String id = tokens[i];
             for(int l=0; l<idFavs.size(); l++) {
                 if (id.equals(idFavs.get(l))) {    // LoggedInUser의 Fav ID와 비교해서 일치하면 isFav = true. 아니면 false
@@ -64,7 +77,7 @@ public class TabFragment_Ranking extends ListFragment {
             }
         }
 
-        for(int i = 1 ; j < topN ; i+=13, j++ ){
+        for(int i = 1 ; j < topN ; i+=14, j++ ){
             String idInfo = new String("ID : ");
             String majorInfo = new String("전공 : ");
             String dutyInfo = new String("직무 : ");
@@ -77,6 +90,7 @@ public class TabFragment_Ranking extends ListFragment {
             String uniInfo = new String("대학: ");
             String empInfo = new String("취업여부: ");
             String gpaInfo = new String("학점: ");
+            String careerInfo = new String("경력: ");
             //---------------
 
             idInfo += tokens[i];
@@ -92,8 +106,9 @@ public class TabFragment_Ranking extends ListFragment {
             uniInfo += tokens[i+8];
             empInfo += tokens[i+10];
             gpaInfo += (tokens[i+11] + "/" + tokens[i+12]);
+            careerInfo += alterCareer(tokens[i+13]);
 
-            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j], ageInfo, wishCompTypeInfo, wishCompInfo, genderInfo, uniInfo, empInfo, gpaInfo));  // 여기서 isFav도 같이 저장해서 넘김
+            mItems.add(new ListViewItem(idInfo,majorInfo,dutyInfo,certifiInfo,toeicInfo, isFavArray[j], ageInfo, wishCompTypeInfo, wishCompInfo, genderInfo, uniInfo, empInfo, gpaInfo, careerInfo));  // 여기서 isFav도 같이 저장해서 넘김
         }
 
         // initialize and set the list adapter
@@ -103,6 +118,18 @@ public class TabFragment_Ranking extends ListFragment {
         ((Activity)getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         screenHeight = displaymetrics.heightPixels;
         screenWidth = displaymetrics.widthPixels;
+    }
+
+    public String alterCareer(String input){
+        String result = "";
+        if( input != null ){
+            input = input.substring(1, input.length()-1);
+            String[] tokens = input.split(":",0);
+            for(int j = 0 ; j < tokens.length ; j++ ){
+                result += (tokens[j] + " ");
+            }
+        }
+        return result;
     }
 
     @Override
@@ -150,6 +177,7 @@ public class TabFragment_Ranking extends ListFragment {
         String item_wishCompType = item.getWish_comp_type();
         String item_wishComp = item.getWish_comp();
         String item_gpa = item.getGpa();
+        String item_career = item.getCareer();
 
         // declare items in popup
         //TextView seeMore_num = (TextView) seeMore.findViewById(R.id.ranking_num);
@@ -165,6 +193,7 @@ public class TabFragment_Ranking extends ListFragment {
         TextView seeMore_wishComp = (TextView) seeMore.findViewById(R.id.rankings_wish_comp);
         TextView seeMore_isEmp = (TextView) seeMore.findViewById(R.id.rankings_isEmp);
         TextView seeMore_gpa = (TextView) seeMore.findViewById(R.id.rankings_gpa);
+        TextView seeMore_career = (TextView) seeMore.findViewById(R.id.rankings_career);
 
         // set textView with actual data text
         //seeMore_num.setText(Integer.toString(position+1));
@@ -180,5 +209,6 @@ public class TabFragment_Ranking extends ListFragment {
         seeMore_wishComp.setText(item_wishComp);
         seeMore_isEmp.setText(item_isEmp);
         seeMore_gpa.setText(item_gpa);
+        seeMore_career.setText(item_career);
     }
 }
