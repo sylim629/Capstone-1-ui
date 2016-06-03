@@ -7,12 +7,13 @@
               android:orientation="vertical"
               android:padding="20dp">
 
-    <FrameLayout
-        android:id="@+id/lure_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:padding="30dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  android:padding="30dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,5 +72,5 @@
             android:text="이미 회원입니다"
             android:textColor="@android:color/white"
             android:textSize="15sp"/>
-    </FrameLayout>
+    </LinearLayout>
 </LinearLayout>

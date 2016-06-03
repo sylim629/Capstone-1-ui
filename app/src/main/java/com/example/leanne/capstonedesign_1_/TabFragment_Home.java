@@ -36,7 +36,11 @@ public class TabFragment_Home extends ListFragment {
 		mItems = new ArrayList<>();
 
 		// 테스트 하기 위해 그냥 만든 임의의 String
-		String rankingResult = "5;kwjel88;885;29;컴퓨터공학부;company_type1;웹기획∙웹마케팅∙PM;company_name1;gender1;univ1;정보처리기사;isEmp;3.9;4.5;iammeee;795;22;컴퓨터공학부;company_type2;통신∙모바일;company_name2;gender2;univ2;정보처리기사|정보보안기사;isEmp;3.5;4.5;qwerty101;835;27;컴퓨터공학부;company_type3;서버∙네트워크∙보안;company_name3;gender3;univ3;정보처리기사|정보보안기사;isEmp;3.85;4.5;gotrules;985;26;컴퓨터공학부;company_type4;시스템프로그래머;company_name4;gender4;univ4;정보처리기사;isEmp;3.25;4.0;id5;toeic5;age5;major5;company_type5;duty5;company_name5;gender5;univ5;certificate5;isEmp;4.23;4.5";
+		String rankingResult = "5;sylim***;910;23;컴퓨터공학부;외국계기업;웹기획∙웹마케팅∙PM;Apple;여;중앙대학교;정보처리기사;취준생;3.9;4.5;" +
+				"xia.lee1***;900;26;컴퓨터공학부;외국계기업;통신∙모바일;Google;여;고려대학교;정보처리기사|정보보안기사;직장인;3.5;4.5;" +
+				"limlean***;835;24;컴퓨터공학부;공기업;서버∙네트워크∙보안;인천공항공사;여;연세대학교;정보처리기사|정보보안기사;취준생;3.8;4.5;" +
+				"jiho0***;750;25;컴퓨터공학부;사기업;시스템프로그래머;SevenSeasons;남;KAIST;정보처리기사;직장인;3.5;4.5;" +
+				"kyun***;800;25;컴퓨터공학부;사기업;통신∙모바일;BrandnewStardom;남;서울대학교;정보처리기사;직장인;4.2;4.5";
 		int topN;
 		String[] tokens = rankingResult.split(";");
 		for (int i = 0; i < tokens.length; i++) {

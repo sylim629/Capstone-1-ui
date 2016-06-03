@@ -35,7 +35,6 @@
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="root"
             android:textColorHint="@color/light_gray"/>
 
         <EditText
@@ -48,7 +47,6 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:singleLine="true"
-            android:text="root"
             android:textColorHint="@color/light_gray"/>
 
         <Button
