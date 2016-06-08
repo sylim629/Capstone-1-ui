@@ -2,7 +2,6 @@ package com.example.leanne.capstonedesign_1_;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Chloe on 4/13/2016.
@@ -37,7 +35,7 @@ public class TabFragment_Home extends ListFragment {
 
         //----------------
         // initialize the items list
-        mItems = new ArrayList<ListViewItem>();
+        mItems = new ArrayList<>();
         /*Resources resources = getResources();
 
         RequestMsgSender userInfoMsgSender = (RequestMsgSender) new RequestMsgSender().execute("8;");
@@ -59,14 +57,14 @@ public class TabFragment_Home extends ListFragment {
                 "qwerty101;875;24;컴퓨터공학부;외국계기업;응용프로그래머;한국IBM;false;이화여자대학교;정보처리기사|정보보안기사;0;3.9;4.5;|인턴:네이버(구 NHN):2|;" +
                 "gotrules;800;26;컴퓨터공학부;공기업;시스템프로그래머;한국산업은행;false;인하대학교;정보처리기사;0;3.8;4.0;|인턴:삼성디스플레이:2|;" +
                 "bigbangtheory;795;25;컴퓨터공학부;사기업;응용프로그래머;LG전자;false;홍익대학교;정보처리기사;0;3.53;4.5;|인턴:신한카드:2|;";
-        int topN = 0;
+        int topN;
         String[] tokens = rankingResult.split(";");
         for (int i = 0; i < tokens.length; i++) {
             if (tokens[i].equals("!")) tokens[i] = "";
         }
         topN = Integer.parseInt(tokens[0]);
         int j = 0;
-        ArrayList<String> idFavs = new ArrayList<String>();
+        ArrayList<String> idFavs;
 
         idFavs = LoggedInUser.getLoggedinUser().getFav_ids();
 
@@ -84,19 +82,19 @@ public class TabFragment_Home extends ListFragment {
         }
 
         for (int i = 1; j < topN; i += 14, j++) {
-            String idInfo = new String("ID : ");
-            String majorInfo = new String("전공 : ");
-            String dutyInfo = new String("직무 : ");
-            String certifiInfo = new String("자격증 : ");
-            String toeicInfo = new String("토익 :  ");
-            String ageInfo = new String("나이 : ");
-            String wishCompTypeInfo = new String("희망 회사 종류: ");
-            String wishCompInfo = new String("희망 회사: ");
-            String genderInfo = new String("성별: ");
-            String uniInfo = new String("대학: ");
-            String empInfo = new String("취업여부: ");
-            String gpaInfo = new String("학점: ");
-            String careerInfo = new String("경력: ");
+            String idInfo = "ID : ";
+            String majorInfo = "전공 : ";
+            String dutyInfo = "직무 : ";
+            String certifiInfo = "자격증 : ";
+            String toeicInfo = "토익 :  ";
+            String ageInfo = "나이 : ";
+            String wishCompTypeInfo = "희망 회사 종류: ";
+            String wishCompInfo = "희망 회사: ";
+            String genderInfo = "성별: ";
+            String uniInfo = "대학: ";
+            String empInfo = "취업여부: ";
+            String gpaInfo = "학점: ";
+            String careerInfo = "경력: ";
             //---------------
 
             idInfo += tokens[i];
@@ -131,14 +129,12 @@ public class TabFragment_Home extends ListFragment {
             return "";
         }
         String result = "";
-        if (input != null) {
-            input = input.substring(1, input.length() - 1);
-            String[] tokens = input.split(":", 0);
-            for (int j = 0; j < tokens.length; j++) {
-                result += (tokens[j] + " ");
-            }
-        }
-        result = result + "개월";
+	    input = input.substring(1, input.length() - 1);
+	    String[] tokens = input.split(":", 0);
+	    for (String token : tokens) {
+		    result += (token + " ");
+	    }
+	    result = result + "개월";
         return result;
     }
 

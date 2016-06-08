@@ -1,9 +1,11 @@
 package com.example.leanne.capstonedesign_1_;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         super(context, R.layout.listview_item, items);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
@@ -67,7 +70,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.certificates.setText(item.getCertificates());
         viewHolder.toeicScore.setText(item.getToeicScore());
 
-        if (item.getIsFav() == true)
+        if (item.getIsFav())
             viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));
         else
             viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_white));
@@ -75,7 +78,7 @@ public class ListViewDemoAdaptor extends ArrayAdapter<ListViewItem> {
         viewHolder.fav.setOnClickListener(new View.OnClickListener() {  // 하트 클릭 리스너
             @Override
             public void onClick(View v) {
-                if (item.getIsFav() == false) {  // 흰 하트일 때
+                if (!item.getIsFav()) {  // 흰 하트일 때
                     viewHolder.fav.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.heart_red));    // 빨간 줄 뜨면 무시..
                     item.setIsFav(true);
                     LoggedInUser.getLoggedinUser().setFav_ids(item.getId().substring(5));   // 앞에 있는 "ID : " 빼고 나머지 아이디 부분만 저장
